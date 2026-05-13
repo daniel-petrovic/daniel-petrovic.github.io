@@ -1,6 +1,6 @@
 ---
 title: Home
-description: Personal website and engineering notes about coding, C++, tooling, and practical software work.
+description: Embedded systems engineering, C and C++, Linux, Yocto, IoT, and practical software work.
 permalink: /
 ---
 
@@ -8,33 +8,32 @@ permalink: /
   <p class="eyebrow">Personal website</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    I build software, enjoy clean engineering, and like exploring topics such as C++, tooling,
-    performance, and practical web development.
+    Embedded software and systems engineer focused on C, modern C++, Linux, Yocto, IoT, and
+    industrial automation, with an interest in compiler design.
   </p>
   <div class="hero-actions">
-    <a class="button" href="{{ '/blog/' | relative_url }}">Read the blog</a>
+    <a class="button" href="{{ '/about/' | relative_url }}">About me</a>
     <a class="button button-secondary" href="https://github.com/daniel-petrovic">GitHub</a>
   </div>
 </section>
 
 <section class="grid-two">
   <article class="panel">
-    <h2>About</h2>
+    <h2>What I do</h2>
     <p>
-      This site is a home base for a short personal introduction, current interests, and notes
-      about the kind of software work I care about.
-    </p>
-    <p>
-      The goal is to keep it simple: a clear homepage now, plus enough structure to publish
-      technical writing without rebuilding the site later.
+      I help build embedded products and software stacks where reliability, performance, and
+      maintainability matter.
     </p>
   </article>
   <article class="panel">
-    <h2>Right now</h2>
+    <h2>Interests</h2>
     <ul class="plain-list">
-      <li>Writing about coding and developer workflow</li>
-      <li>Exploring C++ and systems-oriented topics</li>
-      <li>Keeping the site minimal, fast, and easy to maintain</li>
+      <li>C and C++</li>
+      <li>Modern C++ (C++23 and newer)</li>
+      <li>Embedded systems and IoT</li>
+      <li>Industrial automation</li>
+      <li>Linux and Yocto</li>
+      <li>Compiler design</li>
     </ul>
   </article>
 </section>
@@ -42,32 +41,50 @@ permalink: /
 <section class="panel">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Focus areas</p>
-      <h2>What you can expect here</h2>
+      <p class="eyebrow">Services</p>
+      <h2>How I can help</h2>
     </div>
   </div>
   <div class="card-grid">
     <article class="card">
-      <h3>Engineering notes</h3>
-      <p>Short posts about things learned while building, debugging, and maintaining software.</p>
+      <h3>Embedded development</h3>
+      <p>Firmware and application work in C and modern C++ for embedded products and connected devices.</p>
     </article>
     <article class="card">
-      <h3>C++ and low-level interests</h3>
-      <p>Ideas, experiments, and references related to performance-aware programming.</p>
+      <h3>Linux and Yocto</h3>
+      <p>Linux-based platform work, build integration, and Yocto-driven system customization.</p>
     </article>
     <article class="card">
-      <h3>Personal presentation</h3>
-      <p>A lightweight profile page that can stay readable even as the site grows.</p>
+      <h3>IoT systems</h3>
+      <p>Connected-device software with attention to integration, stability, and practical constraints.</p>
+    </article>
+    <article class="card">
+      <h3>Industrial automation</h3>
+      <p>Software for industrial systems where reliability, integration, and long-term maintainability matter.</p>
     </article>
   </div>
 </section>
 
-{% assign latest_posts = site.posts | slice: 0, 3 %}
 <section class="panel">
   <div class="section-header">
     <div>
       <p class="eyebrow">Latest writing</p>
-      <h2>Blog</h2>
+      <h2>Technical notes</h2>
+    </div>
+    <a href="{{ '/blog/' | relative_url }}">See all posts</a>
+  </div>
+  <p>
+    I write about the technical details behind the work: C++, low-level software, execution models,
+    and the problems that show up in real systems.
+  </p>
+</section>
+
+{% assign latest_posts = site.posts | slice: 0, 2 %}
+<section class="panel">
+  <div class="section-header">
+    <div>
+      <p class="eyebrow">Recent posts</p>
+      <h2>Latest writing</h2>
     </div>
     <a href="{{ '/blog/' | relative_url }}">See all posts</a>
   </div>
