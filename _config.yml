@@ -4,6 +4,11 @@ url: https://daniel-petrovic.github.io
 baseurl: ""
 markdown: kramdown
 permalink: /blog/:title/
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: true
 
 defaults:
   - scope:

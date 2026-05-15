@@ -7,7 +7,7 @@
     <meta name="description" content="{{ page.description | default: site.description }}">
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
   </head>
-  <body>
+  <body{% if page.layout == 'post' %} class="post-page"{% endif %}>
     <div class="site-shell">
       <header class="site-header">
         <div class="container site-header-inner">
