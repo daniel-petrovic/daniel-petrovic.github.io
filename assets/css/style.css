@@ -120,6 +120,22 @@ a:hover {
 
 .hero {
   padding: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/hero-embedded-bg.svg") center center / cover no-repeat;
+  opacity: 0.38;
+  pointer-events: none;
+}
+
+.hero > * {
+  position: relative;
+  z-index: 1;
 }
 
 .hero h1,
@@ -214,6 +230,12 @@ a:hover {
   border-radius: var(--radius-sm);
   background: var(--bg-soft);
   border: 1px solid var(--border);
+}
+
+.cv-item + .cv-item {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(148, 163, 184, 0.22);
 }
 
 .post-list {

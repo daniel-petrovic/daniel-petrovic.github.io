@@ -21,8 +21,11 @@ permalink: /
   <article class="panel">
     <h2>What I do</h2>
     <p>
-      I help build embedded products and software stacks where reliability, performance, and
-      maintainability matter.
+      I help meet project deadlines and fix hard-to-find bugs in embedded products and software
+      stacks where reliability, performance, and maintainability matter.
+    </p>
+    <p>
+      To me <b>SOLID</b> is not just a word.
     </p>
   </article>
   <article class="panel">
@@ -31,6 +34,8 @@ permalink: /
       <li>C and C++</li>
       <li>Modern C++ (C++23 and newer)</li>
       <li>Embedded systems and IoT</li>
+      <li>Scalable distributed systems</li>
+      <li>Async I/O and multithreading</li>
       <li>Industrial automation</li>
       <li>Linux and Yocto</li>
       <li>Compiler design</li>
@@ -74,7 +79,7 @@ permalink: /
     <a href="{{ '/blog/' | relative_url }}">See all posts</a>
   </div>
   <p>
-    I write about the technical details behind the work: C++, low-level software, execution models,
+    I write about the technical details behind the work: C/C++, low-level embedded software, execution models,
     and the problems that show up in real systems.
   </p>
 </section>
