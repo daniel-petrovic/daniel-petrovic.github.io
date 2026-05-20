@@ -67,7 +67,7 @@ permalink: /
   <div class="section-header">
     <div>
       <p class="eyebrow">Latest writing</p>
-      <h2>Blog scaffold</h2>
+      <h2>Blog</h2>
     </div>
     <a href="{{ '/blog/' | relative_url }}">See all posts</a>
   </div>

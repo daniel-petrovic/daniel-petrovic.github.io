@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-docker run --rm -p 4000:4000 \
+docker run --rm -p 5000:4000 \
   -v "$PWD:/srv/jekyll:Z" \
   -v /etc/ssl/certs:/etc/ssl/certs:ro \
   -e SSL_CERT_DIR=/etc/ssl/certs \
