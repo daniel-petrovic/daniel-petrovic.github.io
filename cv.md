@@ -16,7 +16,7 @@ permalink: /cv/
       <ul class="plain-list">
         <li><strong>Location:</strong> Bregenz, Austria</li>
         <li><strong>Telephone:</strong> +43 677 615 948 84</li>
-        <li><strong>Email:</strong> <a href="mailto:contact@petrovich.ch">contact@petrovich.ch</a></li>
+        <li><strong>Email:</strong> <a href="mailto:daniel-dev@hotmail.de">daniel-dev@hotmail.de</a></li>
         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/daniel-petrovic/">linkedin.com/in/daniel-petrovic</a></li>
       </ul>
     </article>
