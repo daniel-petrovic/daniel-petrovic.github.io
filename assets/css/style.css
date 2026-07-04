@@ -310,6 +310,29 @@ body.post-page .post-article {
   text-underline-offset: 0.16em;
 }
 
+.prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  display: block;
+  margin: 2rem auto;
+}
+
+.prose figure {
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.prose figure img {
+  margin: 0 auto 0.5rem;
+}
+
+.prose figcaption {
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+
 .prose strong {
   color: var(--text);
 }
