@@ -69,5 +69,5 @@ jobs:
         if: steps.deployment.outcome == 'failure'
         uses: actions/deploy-pages@v5
       - name: Fail if deployment did not succeed
-        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome == 'failure'
+        if: steps.deployment.outcome == 'failure' && steps.deployment_retry.outcome != 'success'
         run: exit 1
