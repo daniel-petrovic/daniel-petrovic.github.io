@@ -348,6 +348,13 @@ gst-launch-1.0 \
 
 Browse to `http://192.168.0.117:8080/` to view the stream.
 
+<figure>
+  <video controls width="100%">
+    <source src="{{ '/assets/videos/raspberrypi-cam-streaming.mp4' | relative_url }}" type="video/mp4">
+  </video>
+  <figcaption>Live MJPEG stream from the OV5647 camera at 640×480, ~30 fps, viewed in a browser via the HTTP relay.</figcaption>
+</figure>
+
 ## Performance comparison
 
 | Metric | Before | After |
