@@ -116,7 +116,7 @@ With libcamera available, the gstreamer pipeline starts:
 
 ```bash
 gst-launch-1.0 libcamerasrc ! \
-  videoconvert ! jpegnc ! \
+  videoconvert ! jpegenc ! \
   multipartmux ! tcpserversink host=0.0.0.0 port=8081
 ```
 
