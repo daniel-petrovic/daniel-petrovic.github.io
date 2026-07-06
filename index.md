@@ -1,18 +1,17 @@
 ---
 title: Home
-description: Embedded systems engineering, C and C++, Linux, Yocto, IoT, and practical software work.
+description: Embedded C++ consulting for industrial and medical systems — Yocto, Qt6, OPC UA, and modern C++ for Linux devices.
 permalink: /
 ---
 
 <section class="hero">
-  <p class="eyebrow">Personal website</p>
+  <p class="eyebrow">Embedded C++ Consulting</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    Embedded software and systems engineer focused on C, modern C++, Linux, Yocto, IoT, and
-    industrial automation, with interests in compiler design and cybersecurity.
+    I help industrial and embedded companies accelerate development of C++/Qt software for Linux devices, industrial automation and medical systems.
   </p>
   <div class="hero-actions">
-    <a class="button" href="{{ '/about/' | relative_url }}">About me</a>
+    <a class="button" href="{{ '/cv/' | relative_url }}">Services &amp; Experience</a>
     <a class="button button-secondary" href="https://github.com/daniel-petrovic">GitHub</a>
   </div>
 </section>
@@ -21,25 +20,23 @@ permalink: /
   <article class="panel">
     <h2>What I do</h2>
     <p>
-      I help meet project deadlines and fix hard-to-find bugs in embedded products and software
-      stacks where reliability, performance, and maintainability matter.
+      I help meet project deadlines and fix hard-to-find bugs in embedded products and software stacks where reliability, performance, and maintainability matter.
     </p>
     <p>
-      To me <b>SOLID</b> is not just a word.
+      I work across the full stack of embedded Linux systems — from Yocto BSP integration and low-level I/O to Qt6/QML user interfaces and cloud connectivity.
     </p>
   </article>
   <article class="panel">
-    <h2>Interests</h2>
+    <h2>Specialties</h2>
     <ul class="plain-list">
-      <li>C and C++</li>
-      <li>Modern C++ (C++23 and newer)</li>
-      <li>Embedded systems and IoT</li>
-      <li>Scalable distributed systems</li>
-      <li>Async I/O and multithreading</li>
-      <li>Industrial automation</li>
-      <li>Linux and Yocto</li>
-      <li>Compiler design</li>
-      <li>Cybersecurity and secure systems</li>
+      <li>Embedded Linux &amp; Yocto</li>
+      <li>Modern C++ (C++17/20/23)</li>
+      <li>Qt6 &amp; QML</li>
+      <li>OPC UA, CAN/CANopen</li>
+      <li>Software Architecture</li>
+      <li>Legacy Modernization</li>
+      <li>Debugging &amp; Performance</li>
+      <li>Compiler Tooling (Clang/LLVM)</li>
     </ul>
   </article>
 </section>
@@ -53,20 +50,20 @@ permalink: /
   </div>
   <div class="card-grid">
     <article class="card">
-      <h3>Embedded development</h3>
-      <p>Firmware and application work in C and modern C++ for embedded products and connected devices.</p>
+      <h3>Embedded Linux &amp; Yocto</h3>
+      <p>Platform integration, BSP customization, build system optimization, and Yocto layer development for ARM/Linux devices.</p>
     </article>
     <article class="card">
-      <h3>Linux and Yocto</h3>
-      <p>Linux-based platform work, build integration, and Yocto-driven system customization.</p>
+      <h3>Qt6 &amp; QML Applications</h3>
+      <p>Cross-platform UI development, Qt6 application frameworks, QML interfaces, and embedded GUI optimization.</p>
     </article>
     <article class="card">
-      <h3>IoT systems</h3>
-      <p>Connected-device software with attention to integration, stability, and practical constraints.</p>
+      <h3>Industrial Protocols</h3>
+      <p>OPC UA server/client integration, CAN/CANopen communication, PLC interfacing, and IoT connectivity solutions.</p>
     </article>
     <article class="card">
-      <h3>Industrial automation</h3>
-      <p>Software for industrial systems where reliability, integration, and long-term maintainability matter.</p>
+      <h3>Software Architecture</h3>
+      <p>Modular application design, clean architecture patterns, code quality tooling, and technical strategy for embedded systems.</p>
     </article>
   </div>
 </section>
@@ -74,15 +71,19 @@ permalink: /
 <section class="panel">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Latest writing</p>
-      <h2>Technical notes</h2>
+      <p class="eyebrow">Industries</p>
+      <h2>Where I work</h2>
     </div>
-    <a href="{{ '/blog/' | relative_url }}">See all posts</a>
   </div>
-  <p>
-    I write about the technical details behind the work: C/C++, low-level embedded software, execution models,
-    and the problems that show up in real systems.
-  </p>
+  <ul class="tag-list">
+    <li>Industrial Automation</li>
+    <li>Robotics</li>
+    <li>Medical Devices</li>
+    <li>Laboratory Equipment</li>
+    <li>IoT &amp; Embedded Linux</li>
+    <li>Machine Vision</li>
+    <li>Intralogistics</li>
+  </ul>
 </section>
 
 {% assign latest_posts = site.posts | slice: 0, 2 %}

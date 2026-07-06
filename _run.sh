@@ -3,12 +3,12 @@ set -euo pipefail
 
 PORT="${PORT:-4000}"
 
-if command -v ss >/dev/null 2>&1 && ss -ltn "sport = :$PORT" | grep -q LISTEN; then
-  echo "Port $PORT is already in use. Run with a different port, for example: PORT=4001 ./_run.sh" >&2
-  exit 1
-fi
+# Kill any container using the target port
+CID="$(docker ps -q --filter "publish=$PORT" 2>/dev/null || true)"
+[ -n "$CID" ] && docker kill "$CID" >/dev/null 2>&1 || true
 
-docker run --rm -p "$PORT:4000" \
+docker run --rm --name jekyll-dev \
+  -p "$PORT:4000" \
   -v "$PWD:/srv/jekyll:Z" \
   -v /etc/ssl/certs:/etc/ssl/certs:ro \
   -e SSL_CERT_DIR=/etc/ssl/certs \

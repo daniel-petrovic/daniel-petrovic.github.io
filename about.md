@@ -1,6 +1,6 @@
 ---
 title: About
-description: Embedded systems engineering background, interests, and services.
+description: Embedded C++ consultant based in Austria — Yocto, Qt6, OPC UA, and modern C++ for industrial and medical systems.
 permalink: /about/
 ---
 
@@ -8,15 +8,20 @@ permalink: /about/
   <p class="eyebrow">About</p>
   <h1>Background</h1>
   <p class="lead">
-    I help build embedded systems and software for real products, with a focus on C, C++, Linux,
-    Yocto, IoT, and practical engineering.
+    I help embedded and industrial companies build reliable C++/Qt software for Linux devices.
   </p>
   <p>
-    The focus is embedded system engineering, from low-level software and Linux-based platforms to
-    IoT devices, tooling, and product-focused implementation.
+    Based in Bregenz, Austria, I work as a freelance embedded C++ consultant specializing in
+    Yocto Linux, Qt6, and industrial protocols. I focus on embedded systems where reliability,
+    performance, and maintainability are critical &mdash; from medical devices and laboratory equipment
+    to industrial automation and IoT products.
   </p>
   <p>
-    If you need embedded development support, this site is a place to learn what I work on and
-    whether the fit makes sense.
+    With a Dipl.-Ing. from Karlsruhe Institute of Technology (KIT) and over a decade of experience
+    across embedded systems, industrial automation, and tooling, I help teams deliver complex
+    embedded software projects on time and within budget.
+  </p>
+  <p>
+    <a href="{{ '/cv/' | relative_url }}">View services &amp; experience &rarr;</a>
   </p>
 </section>
