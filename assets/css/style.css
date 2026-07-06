@@ -337,6 +337,40 @@ body.post-page .post-article {
   color: var(--text);
 }
 
+.table-of-contents {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-soft);
+}
+
+.table-of-contents h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.table-of-contents ul {
+  margin: 0.9rem 0 0 1.25rem;
+  padding: 0;
+}
+
+.table-of-contents ul ul {
+  margin-top: 0.45rem;
+}
+
+.table-of-contents li + li {
+  margin-top: 0.3rem;
+}
+
+.table-of-contents a {
+  text-decoration: none;
+}
+
+.table-of-contents a:hover {
+  text-decoration: underline;
+}
+
 .prose code {
   padding: 0.15rem 0.4rem;
   border-radius: 0.35rem;

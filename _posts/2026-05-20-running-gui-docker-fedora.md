@@ -27,6 +27,14 @@ docker run -it --rm \
   ros:humble
 ```
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## What this setup is doing
 
 - `-it` keeps the container interactive and attaches a TTY, which is useful when you want a shell and want to run test commands manually.

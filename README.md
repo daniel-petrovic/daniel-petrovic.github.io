@@ -7,7 +7,8 @@ Personal website and blog source for GitHub Pages, built with Jekyll.
 The most reliable local preview path is Docker:
 
 ```sh
-docker run --rm -p 4000:4000 \
+PORT=4000
+docker run --rm -p "$PORT:4000" \
   -v "$PWD:/srv/jekyll:Z" \
   -v /etc/ssl/certs:/etc/ssl/certs:ro \
   -e SSL_CERT_DIR=/etc/ssl/certs \
@@ -17,7 +18,9 @@ docker run --rm -p 4000:4000 \
   sh -lc 'bundle install && bundle exec jekyll serve --host 0.0.0.0 --disable-disk-cache --destination /tmp/jekyll-site'
 ```
 
-Open `http://127.0.0.1:4000`.
+Open `http://127.0.0.1:$PORT`.
+
+If port `4000` is already in use, pick another one, for example `PORT=4001`.
 
 If you prefer a local Ruby install:
 

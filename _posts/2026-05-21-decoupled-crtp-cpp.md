@@ -46,6 +46,14 @@ which uses the term for an OpenJDK-inspired runtime-dispatch design rather than 
 
 That is different from the C++23 `this auto&` / explicit-object-parameter feature. C++23 is related and useful, but it is **not** what that article means by decoupled CRTP.
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## Classic CRTP in one minute
 
 Here is the standard reusable-base pattern:

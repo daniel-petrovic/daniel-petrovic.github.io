@@ -1,7 +1,14 @@
 #!/bin/bash
 set -euo pipefail
 
-docker run --rm -p 4000:4000 \
+PORT="${PORT:-4000}"
+
+if command -v ss >/dev/null 2>&1 && ss -ltn "sport = :$PORT" | grep -q LISTEN; then
+  echo "Port $PORT is already in use. Run with a different port, for example: PORT=4001 ./_run.sh" >&2
+  exit 1
+fi
+
+docker run --rm -p "$PORT:4000" \
   -v "$PWD:/srv/jekyll:Z" \
   -v /etc/ssl/certs:/etc/ssl/certs:ro \
   -e SSL_CERT_DIR=/etc/ssl/certs \

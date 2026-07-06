@@ -30,6 +30,14 @@ Construction order is always base-first, then derived. Destruction is the revers
 
 The question is: does it? It depends entirely on *how* you manage the object.
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## The raw pointer case
 
 ```cpp

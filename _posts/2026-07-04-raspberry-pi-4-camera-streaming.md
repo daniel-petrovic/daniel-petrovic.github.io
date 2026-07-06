@@ -33,6 +33,14 @@ and how to verify the camera is detected by the kernel.
 With that in place, the camera overlay was working — `dtoverlay=ov5647` in `config.txt` gave us `/dev/video0`
 and `media-ctl` showed the OV5647 subdev at `10-0036`. The hard part was getting it to stream.
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## Problem 1: bcm2835-unicam rejects STREAMON
 
 The first attempt was the obvious gstreamer pipeline:

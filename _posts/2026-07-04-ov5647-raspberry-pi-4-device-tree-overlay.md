@@ -22,6 +22,14 @@ This post walks through the debugging process and what I had to fix.
   <figcaption>The setup: Raspberry Pi 4 Model B with an OV5647-based camera module connected to the CSI port.</figcaption>
 </figure>
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## The overlay that did not work
 
 Here is the overlay I started with proposal from ChatGPT - it looked reasonable at first glance:

@@ -21,6 +21,14 @@ Linux supports a wide range of non-volatile memory technologies because they dif
 | USB Flash Drive | Internal controller | Good | Portable storage | Block device (`/dev/sd*`) |
 | SSD (SATA/NVMe) | Internal controller | Excellent | PCs, servers | Block device (`/dev/sd*`, `/dev/nvme*`) |
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## Raw NOR Flash
 
 NOR flash memory cells can be read like ordinary memory (random access). Read performance is excellent, but write and erase operations are slow. Erases happen in sectors (e.g., 64 KB). NOR is relatively expensive per GB, offers lower storage density than NAND, and is very reliable for storing executable code.

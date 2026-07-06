@@ -24,6 +24,14 @@ The usual flow is:
 2. you store the failure in `std::error_code`,
 3. and you compare it against `std::errc`.
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## `std::errc` in one sentence
 
 Think of **`std::errc` as a vocabulary of common system-style failures**.

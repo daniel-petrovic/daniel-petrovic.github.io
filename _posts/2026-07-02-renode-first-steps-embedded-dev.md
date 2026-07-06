@@ -22,6 +22,14 @@ and can be used in CI pipelines.
 
 This post is a practical starting point for using Renode in day-to-day embedded development.
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## What Renode is good for
 
 Renode is not a replacement for real hardware. It is a fast feedback tool for the parts of the

@@ -18,6 +18,14 @@ So the right framing is:
 
 That does **not** mean every compiler and standard library ships the full model today, but it does mean the design is no longer just speculative background material.
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## The problem the executor model is trying to solve
 
 In older C++ code, the scheduling decision is often baked directly into the code that does the work:

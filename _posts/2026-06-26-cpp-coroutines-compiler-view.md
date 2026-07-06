@@ -18,6 +18,14 @@ Both sections are written as precise normative wording, but they are already ver
 
 ---
 
+<nav class="table-of-contents" markdown="1">
+## Table of contents
+{:.no_toc}
+
+* TOC
+{:toc}
+</nav>
+
 ## 1. What makes a function a coroutine
 
 A function is a coroutine if its body contains a `co_return`, `co_await`, or `co_yield`.
