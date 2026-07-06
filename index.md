@@ -5,10 +5,10 @@ permalink: /
 ---
 
 <section class="hero">
-  <p class="eyebrow">Embedded C++ Consulting</p>
+  <p class="eyebrow">Senior Embedded Linux &amp; Modern C++ Consultant</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    I help industrial and embedded companies accelerate development of C++/Qt software for Linux devices, industrial automation and medical systems.
+    Helping industrial and medical device companies build robust Linux-based embedded software.
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/cv/' | relative_url }}">Services &amp; Experience</a>
@@ -34,9 +34,9 @@ permalink: /
       <li>Qt6 &amp; QML</li>
       <li>OPC UA, CAN/CANopen</li>
       <li>Software Architecture</li>
-      <li>Legacy Modernization</li>
-      <li>Debugging &amp; Performance</li>
-      <li>Compiler Tooling (Clang/LLVM)</li>
+      <li>Technical Lead &amp; Mentoring</li>
+      <li>Performance Optimization</li>
+      <li>Build Systems &amp; CI/CD</li>
     </ul>
   </article>
 </section>

@@ -5,10 +5,10 @@ permalink: /cv/
 ---
 
 <section class="panel">
-  <p class="eyebrow">Embedded C++ Consulting</p>
+  <p class="eyebrow">Senior Embedded Linux &amp; Modern C++ Consultant</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    I help companies build reliable embedded C++ software for Linux devices, industrial automation, and medical systems.
+    Helping industrial and medical device companies build robust Linux-based embedded software.
   </p>
 
   <div class="grid-two">
@@ -25,7 +25,6 @@ permalink: /cv/
     <article class="card">
       <h2>Availability</h2>
       <p>Available for freelance and contract engagements across the DACH region and EU. Remote and on-site as needed.</p>
-      <p>Hourly or project-based pricing.</p>
     </article>
   </div>
 </section>
@@ -44,7 +43,7 @@ permalink: /cv/
     </article>
     <article class="card">
       <h3>Modern C++ Development</h3>
-      <p>C++17/20 application development with focus on clean architecture, performance, and maintainability for embedded and desktop targets.</p>
+      <p>C++17/20/23 application development with focus on clean architecture, performance, and maintainability for embedded and desktop targets.</p>
     </article>
     <article class="card">
       <h3>Qt6 &amp; QML</h3>
@@ -55,8 +54,16 @@ permalink: /cv/
       <p>OPC UA server/client integration, CAN/CANopen communication, PLC interfacing (Siemens S7), and IoT connectivity (Azure IoT).</p>
     </article>
     <article class="card">
-      <h3>Software Architecture</h3>
-      <p>Modular architecture design, design pattern application, code quality tooling (Clang-tidy, custom matchers), and technical strategy.</p>
+      <h3>Software Architecture &amp; Technical Lead</h3>
+      <p>Modular architecture design, design pattern application, code quality tooling (Clang-tidy, custom matchers), and technical strategy. Technical leadership and mentoring for embedded teams.</p>
+    </article>
+    <article class="card">
+      <h3>Performance Optimization</h3>
+      <p>Profiling, benchmarking, and optimization of embedded applications. Real-time constraint analysis, memory footprint reduction, and throughput improvements using sanitizers, heaptrack, valgrind, and custom tooling.</p>
+    </article>
+    <article class="card">
+      <h3>Build Systems &amp; CI/CD</h3>
+      <p>Yocto/OpenEmbedded optimization, CMake/Meson build system design, Azure DevOps and GitHub Actions pipeline setup, and cross-compilation toolchain configuration.</p>
     </article>
     <article class="card">
       <h3>Legacy Modernization</h3>
@@ -102,7 +109,8 @@ permalink: /cv/
     <p class="post-meta">2022 &mdash; Present</p>
     <h3>Embedded Software for Dental Lab Equipment &amp; CNC Milling</h3>
     <p><strong>EBCONT group GmbH, Austria</strong></p>
-    <p>Designed and implemented a modular embedded application framework for dental lab equipment on Yocto Linux (Cortex-A53/A72). Integrated CNC control for a 5-axis milling device on a realtime Linux kernel with strict timing requirements — multiple CNC callbacks running at 2ms intervals. Developed an OPC UA server enabling automated production testing, reducing manual manufacturing effort and improving test reliability. Integrated CANopen I/O, EEPROM, and RFID for device control. Implemented OTA updates via Mender and Azure IoT connectivity for remote device management. Contributed Qt6/QML UI components and established C++ coding guidelines for the team. Optimized Azure DevOps CI/CD pipelines, cutting compile times and helping the team meet critical project deadlines. Diagnosed and resolved issues across the software stack — OS networking, GStreamer pipeline problems, memory leaks, and threading bugs — using address sanitizer, thread sanitizer, heaptrack, valgrind, and custom-built tools — standard sanitizers were of limited use due to the project's realtime constraints.</p>
+    <p>Led a small team maintaining and supporting a customer's legacy Windows 7 Compact Embedded devices before porting the entire software stack to Yocto Linux. Designed and implemented a modular next-generation application framework reusable across different product families. The initial target were Avnet evaluation boards (MSC E5 and E1) with i.MX8 MPlus and i.MX8 QuadMax SoMs (Cortex-A53/A72) running Yocto Linux, before moving to a custom board developed in-house for the final dental lab equipment. Integrated CNC control for a 5-axis milling (dry) device on a realtime Linux kernel with strict timing requirements — multiple CNC kernel callbacks running at 2ms intervals. Developed an OPC UA server enabling automated production testing, reducing manual manufacturing effort and improving test reliability. Integrated CAN, EEPROM (I2C), and RFID for device control. Implemented OTA updates via Mender and Azure IoT connectivity for remote device management. Contributed Qt6/QML UI components and helped establish C++ coding guidelines for the team. Optimized Azure DevOps CI/CD pipelines, reducing build times by over 40% and helping the team meet critical project deadlines. Diagnosed and resolved issues across the software stack — OS networking, GStreamer pipeline problems, memory leaks, and threading bugs — using address sanitizer, thread sanitizer, heaptrack, valgrind, and custom-built tools — standard sanitizers were of limited use due to the project's realtime constraints.</p>
+    <p class="post-meta"><strong>Impact:</strong> Supporting production of hundreds of dental lab devices worldwide.</p>
   </article>
 
   <article class="cv-item">
@@ -110,6 +118,7 @@ permalink: /cv/
     <h3>Simulation &amp; PLC Communication for Warehouse Management</h3>
     <p><strong>LTW Intralogistics GmbH, Austria</strong></p>
     <p>Built simulation environments and controlling services for Siemens S7 PLCs (stacker cranes, conveyor systems) in C++/MFC and C#/WPF for automated warehouse management systems running on Windows hosts. Implemented ISO TCP/RFC1006 communication protocols for PLC control. Developed diagnostic tools and ported legacy codebases to modern infrastructure. Programmed T-SQL database components (transactions, stored procedures) for warehouse storage. Implemented C# services for SAP warehouse host integration. Provided on-site support during installation and integration phases at customer facilities.</p>
+    <p class="post-meta"><strong>Impact:</strong> Simulation and control software for automated warehouses managing thousands of storage locations.</p>
   </article>
 
   <article class="cv-item">
@@ -117,6 +126,7 @@ permalink: /cv/
     <h3>Numerical Simulation Tooling for Industrial Biomass Systems</h3>
     <p><strong>Viessmann GmbH, Austria</strong></p>
     <p>Developed C++/Qt/Python applications for thermochemical and fluid-dynamic calculations used in industrial biomass furnace design. Contributed to EU research projects in collaboration with academic research institutes. Built tools to support sales engineering with calculation and dimensioning workflows.</p>
+    <p class="post-meta"><strong>Impact:</strong> Improved efficiency and reduced emissions across multiple industrial biomass plants in Europe.</p>
   </article>
 </section>
 
