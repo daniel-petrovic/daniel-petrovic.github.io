@@ -7,7 +7,7 @@ permalink: /cv/
 <section class="panel">
   <p class="eyebrow">Curriculum Vitae</p>
   <h1>Daniel Petrovic</h1>
-  <p class="lead">Software Architect & Senior C/C++ Developer | Dipl.-Ing. (KIT) | Embedded Systems | Industrial Automation | IoT
+  <p class="lead">Software Architect & Senior C/C++ Developer | Dipl.-Ing. (KIT) | Embedded Systems | Industrial Automation | IoT | Cybersecurity
     </p>
 
   <div class="grid-two cv-contact">
@@ -23,7 +23,7 @@ permalink: /cv/
 
   <article class="card">
     <h2>Profile</h2>
-    <p>Passionate C++ professional with broad experience across embedded systems, industrial automation, desktop software, numerical simulation, and web development.</p>
+    <p>Passionate C++ professional with broad experience across embedded systems, industrial automation, desktop software, numerical simulation, and web development, with strong interest in cybersecurity and secure system design.</p>
     <p>Focused on clean architecture, expressive code, software design patterns, and reliable systems. Experienced in tracking down and resolving hard-to-find bugs in complex software systems. Currently working on embedded medical-device software on Yocto Linux for Cortex-A53/A72 SoMs.</p>
     </article>
   </div>
@@ -164,6 +164,7 @@ permalink: /cv/
   <h2>Personal</h2>
   <ul>
     <li><strong>Languages:</strong> English, German, basic Russian and Bulgarian</li>
+    <li><strong>Interests:</strong> cybersecurity, compiler design, Linux, embedded systems, and modern C++</li>
     <li><strong>Preferences:</strong> vim over emacs, dogs over cats</li>
     <li><strong>References:</strong> available on request</li>
   </ul>

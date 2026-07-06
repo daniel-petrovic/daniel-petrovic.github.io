@@ -9,7 +9,7 @@ permalink: /
   <h1>Daniel Petrovic</h1>
   <p class="lead">
     Embedded software and systems engineer focused on C, modern C++, Linux, Yocto, IoT, and
-    industrial automation, with an interest in compiler design.
+    industrial automation, with interests in compiler design and cybersecurity.
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/about/' | relative_url }}">About me</a>
@@ -39,6 +39,7 @@ permalink: /
       <li>Industrial automation</li>
       <li>Linux and Yocto</li>
       <li>Compiler design</li>
+      <li>Cybersecurity and secure systems</li>
     </ul>
   </article>
 </section>
