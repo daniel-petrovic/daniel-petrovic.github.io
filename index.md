@@ -8,7 +8,7 @@ permalink: /
   <p class="eyebrow">Senior Embedded Linux &amp; Modern C++ Consultant</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    Helping industrial and medical device companies build robust Linux-based embedded software.
+    Building robust Linux-based embedded software for complex products and platforms.
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/cv/' | relative_url }}">Services &amp; Experience</a>

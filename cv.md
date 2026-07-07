@@ -8,7 +8,7 @@ permalink: /cv/
   <p class="eyebrow">Senior Embedded Linux &amp; Modern C++ Consultant</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    Helping industrial and medical device companies build robust Linux-based embedded software.
+    Building robust Linux-based embedded software for complex products and platforms.
   </p>
 
   <div class="grid-two">
@@ -17,14 +17,14 @@ permalink: /cv/
       <ul class="plain-list">
         <li><strong>Location:</strong> Bregenz, Austria</li>
         <li><strong>Telephone:</strong> +43 677 615 948 84</li>
-        <li><strong>Email:</strong> <a href="mailto:daniel-dev@hotmail.de">daniel-dev@hotmail.de</a></li>
+        <li><strong>Email:</strong> <a href="mailto:contact@petrovich.ch">contact@petrovich.ch</a></li>
         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/daniel-petrovic/">linkedin.com/in/daniel-petrovic</a></li>
       </ul>
     </article>
 
     <article class="card">
       <h2>Availability</h2>
-      <p>Available for freelance and contract engagements across the DACH region and EU. Remote and on-site as needed.</p>
+      <p>Currently employed. Ready for freelance engagements roughly September/October 2026.</p>
     </article>
   </div>
 </section>
