@@ -1,4 +1,2 @@
 **/*.png filter=lfs diff=lfs merge=lfs -text
-**/*.jpg filter=lfs diff=lfs merge=lfs -text
-**/*.jpeg filter=lfs diff=lfs merge=lfs -text
 assets/images/pi4-ov5647-setup.jpg !filter !diff !merge -text
