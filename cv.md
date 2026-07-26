@@ -55,7 +55,7 @@ permalink: /cv/
     </article>
     <article class="card">
       <h3>Software Architecture &amp; Mentoring</h3>
-      <p>Modular architecture design, design pattern application, code quality tooling (Clang-tidy, custom matchers), and technical strategy. Mentoring for embedded teams.</p>
+      <p>Modular architecture design, design pattern application, code quality tooling (Clang-tidy, custom matchers), and technical strategy.</p>
     </article>
     <article class="card">
       <h3>Performance Optimization</h3>
