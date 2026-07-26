@@ -1,11 +1,11 @@
 ---
 title: Services & Experience
-description: Embedded C++ consulting services — Yocto, Qt6, OPC UA, modern C++ for industrial and medical systems.
+description: Senior Software Engineer | Linux | Windows | Embedded | Networking | Databases | AI Enthusiast | CyberSecurity
 permalink: /cv/
 ---
 
 <section class="panel">
-  <p class="eyebrow">Senior Embedded Linux &amp; Modern C++ Consultant</p>
+  <p class="eyebrow">Senior Software Engineer | Linux | Windows | Embedded | Networking | Databases | AI Enthusiast | CyberSecurity</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
     Building robust Linux-based embedded software for complex products and platforms.
@@ -54,8 +54,8 @@ permalink: /cv/
       <p>OPC UA server/client integration, CAN/CANopen communication, PLC interfacing (Siemens S7), and IoT connectivity (Azure IoT).</p>
     </article>
     <article class="card">
-      <h3>Software Architecture &amp; Technical Lead</h3>
-      <p>Modular architecture design, design pattern application, code quality tooling (Clang-tidy, custom matchers), and technical strategy. Technical leadership and mentoring for embedded teams.</p>
+      <h3>Software Architecture &amp; Mentoring</h3>
+      <p>Modular architecture design, design pattern application, code quality tooling (Clang-tidy, custom matchers), and technical strategy. Mentoring for embedded teams.</p>
     </article>
     <article class="card">
       <h3>Performance Optimization</h3>

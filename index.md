@@ -1,11 +1,11 @@
 ---
 title: Home
-description: Embedded C++ consulting for industrial and medical systems — Yocto, Qt6, OPC UA, and modern C++ for Linux devices.
+description: Senior Software Engineer | Linux | Windows | Embedded | Networking | Databases | AI Enthusiast | CyberSecurity
 permalink: /
 ---
 
 <section class="hero">
-  <p class="eyebrow">Senior Embedded Linux &amp; Modern C++ Consultant</p>
+  <p class="eyebrow">Senior Software Engineer | Linux | Windows | Embedded | Networking | Databases | AI Enthusiast | CyberSecurity</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
     Building robust Linux-based embedded software for complex products and platforms.
@@ -20,7 +20,7 @@ permalink: /
   <article class="panel">
     <h2>What I do</h2>
     <p>
-      I help meet project deadlines and fix hard-to-find bugs in embedded products and software stacks where reliability, performance, and maintainability matter.
+      I help teams meet project deadlines and solve hard-to-find problems in software systems where reliability, performance, and maintainability matter.
     </p>
     <p>
       I work across the full stack of embedded Linux systems — from Yocto BSP integration and low-level I/O to Qt6/QML user interfaces and cloud connectivity.
@@ -34,7 +34,7 @@ permalink: /
       <li>Qt6 &amp; QML</li>
       <li>OPC UA, CAN/CANopen</li>
       <li>Software Architecture</li>
-      <li>Technical Lead &amp; Mentoring</li>
+      <li>Mentoring</li>
       <li>Performance Optimization</li>
       <li>Build Systems &amp; CI/CD</li>
     </ul>
@@ -66,24 +66,6 @@ permalink: /
       <p>Modular application design, clean architecture patterns, code quality tooling, and technical strategy for embedded systems.</p>
     </article>
   </div>
-</section>
-
-<section class="panel">
-  <div class="section-header">
-    <div>
-      <p class="eyebrow">Industries</p>
-      <h2>Where I work</h2>
-    </div>
-  </div>
-  <ul class="tag-list">
-    <li>Industrial Automation</li>
-    <li>Robotics</li>
-    <li>Medical Devices</li>
-    <li>Laboratory Equipment</li>
-    <li>IoT &amp; Embedded Linux</li>
-    <li>Machine Vision</li>
-    <li>Intralogistics</li>
-  </ul>
 </section>
 
 {% assign latest_posts = site.posts | slice: 0, 2 %}
