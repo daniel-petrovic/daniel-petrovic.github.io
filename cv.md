@@ -49,7 +49,7 @@ permalink: /cv/
       <p>C++17/20/23 application development with focus on clean architecture, performance, and maintainability for embedded and desktop targets.</p>
     </article>
     <article class="card">
-      <h3>Qt6 GUI Architecture</h3>
+      <h3>Qt6/QML Development</h3>
       <p>Application framework design, Qt6/QML UI implementation, embedded GUI optimization, and cross-platform deployment.</p>
     </article>
     <article class="card">

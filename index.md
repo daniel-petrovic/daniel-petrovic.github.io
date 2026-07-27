@@ -55,7 +55,7 @@ permalink: /
       <p>Board support, kernel configuration, device integration, Yocto layer work when needed, and production-ready embedded Linux images.</p>
     </article>
     <article class="card">
-      <h3>Qt6 GUI Architecture</h3>
+      <h3>Qt6/QML Development</h3>
       <p>Maintainable Qt6/QML application frameworks, embedded UI performance work, and deployment on constrained Linux targets.</p>
     </article>
     <article class="card">
