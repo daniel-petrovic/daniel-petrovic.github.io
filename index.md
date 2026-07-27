@@ -1,17 +1,18 @@
 ---
 title: Home
-description: Senior Software Engineer | Linux | Windows | Embedded | Networking | Databases | AI Enthusiast | CyberSecurity
+description: Senior Embedded Linux & C++ Consultant for embedded products, Qt6/QML applications, and Yocto-based systems.
 permalink: /
 ---
 
 <section class="hero">
-  <p class="eyebrow">Senior Software Engineer | Linux | Windows | Embedded | Networking | Databases | AI Enthusiast | CyberSecurity</p>
+  <p class="eyebrow">Senior Embedded Linux &amp; C++ Consultant</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    Building robust Linux-based embedded software for complex products and platforms.
+    Embedded Linux and modern C++ for embedded products, with strong Qt6/QML application experience and Yocto-based systems when needed.
   </p>
   <div class="hero-actions">
-    <a class="button" href="{{ '/cv/' | relative_url }}">Services &amp; Experience</a>
+    <a class="button" href="mailto:contact@petrovich.ch">Discuss a Project</a>
+    <a class="button button-secondary" href="{{ '/cv/' | relative_url }}">Services &amp; Experience</a>
     <a class="button button-secondary" href="https://github.com/daniel-petrovic">GitHub</a>
   </div>
 </section>
@@ -20,23 +21,23 @@ permalink: /
   <article class="panel">
     <h2>What I do</h2>
     <p>
-      I help teams meet project deadlines and solve hard-to-find problems in software systems where reliability, performance, and maintainability matter.
+      I help product teams bring up embedded platforms, including embedded Linux systems, modernize C++ codebases, and solve reliability problems in embedded products and complex software systems.
     </p>
     <p>
-      I work across the full stack of embedded Linux systems — from Yocto BSP integration and low-level I/O to Qt6/QML user interfaces and cloud connectivity.
+      The focus is narrow: embedded Linux, modern C++, Qt6/QML applications, OPC UA/CAN/RFID connectivity, production test automation, and performance debugging. I also work with Yocto-based systems when the project requires it.
+    </p>
+    <p>
+      Current work: writing a modern C++ compiler book and building an OPC UA framework from scratch.
     </p>
   </article>
   <article class="panel">
     <h2>Specialties</h2>
     <ul class="plain-list">
-      <li>Embedded Linux &amp; Yocto</li>
+      <li>Embedded Linux platform bring-up</li>
       <li>Modern C++ (C++17/20/23)</li>
       <li>Qt6 &amp; QML</li>
-      <li>OPC UA, CAN/CANopen</li>
-      <li>Software Architecture</li>
-      <li>Mentoring</li>
-      <li>Performance Optimization</li>
-      <li>Build Systems &amp; CI/CD</li>
+      <li>OPC UA, CAN/CANopen, RFID, PLC integration</li>
+      <li>Debugging, performance work, and CI/CD implementation</li>
     </ul>
   </article>
 </section>
@@ -44,53 +45,57 @@ permalink: /
 <section class="panel">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Services</p>
-      <h2>How I can help</h2>
+      <p class="eyebrow">Engagement packages</p>
+      <h2>How I help embedded teams</h2>
     </div>
   </div>
   <div class="card-grid">
     <article class="card">
-      <h3>Embedded Linux &amp; Yocto</h3>
-      <p>Platform integration, BSP customization, build system optimization, and Yocto layer development for ARM/Linux devices.</p>
+      <h3>Embedded Linux System Bring-Up</h3>
+      <p>Board support, kernel configuration, device integration, Yocto layer work when needed, and production-ready embedded Linux images.</p>
     </article>
     <article class="card">
-      <h3>Qt6 &amp; QML Applications</h3>
-      <p>Cross-platform UI development, Qt6 application frameworks, QML interfaces, and embedded GUI optimization.</p>
+      <h3>Qt6 GUI Architecture</h3>
+      <p>Maintainable Qt6/QML application frameworks, embedded UI performance work, and deployment on constrained Linux targets.</p>
     </article>
     <article class="card">
-      <h3>Industrial Protocols</h3>
-      <p>OPC UA server/client integration, CAN/CANopen communication, PLC interfacing, and IoT connectivity solutions.</p>
+      <h3>Industrial Automation Integration</h3>
+      <p>OPC UA, CAN/CANopen, RFID, PLC communication, production test automation, and device-to-cloud connectivity.</p>
     </article>
     <article class="card">
-      <h3>Software Architecture</h3>
-      <p>Modular application design, clean architecture patterns, code quality tooling, and technical strategy for embedded systems.</p>
+      <h3>C++ Modernization &amp; Debugging</h3>
+      <p>C++17/20/23 modernization, memory/thread debugging, performance work, build speedups, and CI/CD pipeline setup or cleanup.</p>
     </article>
   </div>
 </section>
 
-{% assign latest_posts = site.posts | slice: 0, 2 %}
 <section class="panel">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Recent posts</p>
-      <h2>Latest writing</h2>
+      <p class="eyebrow">Technical proof</p>
+      <h2>Selected writing</h2>
     </div>
     <a href="{{ '/blog/' | relative_url }}">See all posts</a>
   </div>
 
-  {% if latest_posts.size > 0 %}
-    <div class="post-list">
-      {% for post in latest_posts %}
-        <article class="post-preview">
-          <p class="post-meta">
-            <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%B %-d, %Y" }}</time>
-          </p>
-          <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
-          <p>{{ post.description | default: post.excerpt | strip_html }}</p>
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="empty-state">No posts yet. The structure is ready whenever the first article is.</p>
-  {% endif %}
+  <div class="post-list">
+    <article class="post-preview">
+      <h3><a href="{% post_url 2026-07-09-zephyr-rtos-on-esp32-first-steps %}">Bringing Zephyr RTOS to an ESP32 board</a></h3>
+      <p>A compact embedded bring-up walkthrough covering Zephyr tooling, device tree overlays, GPIO, flashing, and board-level debugging.</p>
+    </article>
+    <article class="post-preview">
+      <h3><a href="{% post_url 2026-07-09-debugging-multithreaded-programs-with-gdb %}">Debugging multithreaded programs with GDB</a></h3>
+      <p>Practical debugging notes for thread inspection, scheduler locking, deadlocks, and timing-sensitive C++ problems.</p>
+    </article>
+  </div>
+</section>
+
+<section class="panel">
+  <p class="eyebrow">Availability</p>
+  <h2>Discuss an embedded Linux project</h2>
+  <p>Available for limited fractional consulting now by arrangement, and full project engagements starting Autumn 2026.</p>
+  <div class="hero-actions">
+    <a class="button" href="mailto:contact@petrovich.ch">Inquire About Availability</a>
+    <a class="button button-secondary" href="{{ '/cv/' | relative_url }}">View Services</a>
+  </div>
 </section>
