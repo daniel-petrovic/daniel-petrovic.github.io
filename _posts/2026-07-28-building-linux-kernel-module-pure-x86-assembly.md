@@ -1,5 +1,5 @@
 ---
-title: "Building a Linux Kernel Module in Pure x86 Assembly"
+title: "Building a Linux Kernel Module in Pure x86"
 description: An exploration of what happens when the compiler abstraction is removed and a Linux kernel module is written directly in x86-64 assembly.
 date: 2026-07-28 10:00:00 +0200
 tags:
@@ -36,7 +36,7 @@ There were a few bumps along the way.
 
 The kernel rejected the module several times, and each failure revealed another hidden rule of kernel development.
 
-This is a short story of every problem, every error message, and every lesson learned.
+This is a short story of problems and lessons learned.
 
 Everything in this post was tested on:
 
@@ -73,6 +73,14 @@ The initial implementation focused on the minimum required kernel interfaces:
 5. Insert with `insmod`.
 
 For a deeper look at what happens under the hood when you run `insmod`, see [Module Loading Internals](https://kernel-internals.org/modules/module-loading-internals/).
+
+A kernel module is organized into ELF sections. The ones that matter for a minimal module:
+
+| Section | Purpose |
+|---------|---------|
+| `.modinfo` | Null-separated key=value strings: `license`, `author`, `description`, `vermagic` |
+| `.init.text` | Init code — freed after `mod->init()` returns |
+| `.exit.text` | Cleanup code — kept until unload |
 
 The first version looked like this:
 
