@@ -1,6 +1,6 @@
 ---
 title: "Building a Linux Kernel Module in Pure x86 Assembly"
-description: A small journey into writing a Linux kernel module entirely in x86-64 assembly, from first failed attempts to a working module on a modern Fedora kernel.
+description: An exploration of what happens when the compiler abstraction is removed and a Linux kernel module is written directly in x86-64 assembly.
 date: 2026-07-28 10:00:00 +0200
 tags:
   - linux
@@ -18,15 +18,15 @@ The reasons are obvious:
 - The build system naturally integrates with C.
 - The compiler handles many low-level details for us.
 
-But there is another way.
+There is another approach: remove the compiler-generated layer and interact with the kernel using only the interfaces visible at the binary level.
 
-What if we remove the compiler's help and write the entire module ourselves?
+What if we remove the compiler-generated machinery and take responsibility for every detail ourselves?
 
-What if the only language between our code and the Linux kernel is x86-64 assembly?
+What if the only language between your code and the Linux kernel is x86-64 assembly?
 
-We use the GNU assembler (GAS) for this — the same assembler the kernel build system already uses behind the scenes. The module is built with the kernel's kbuild system, so no external toolchain is needed.
+I used GAS (GNU Assembler) for this — the same assembler the kernel build system already uses behind the scenes. The module is built with the kernel's kbuild system, so no external toolchain is needed.
 
-That was a small challenge:
+The objective was simple to describe, but less simple to implement:
 
 Create a Linux kernel module in pure x86 assembly, load it into a modern Fedora kernel, and make it print messages when it loads and unloads.
 
@@ -34,7 +34,7 @@ The final result is only a few lines of assembly.
 
 There were a few bumps along the way.
 
-The kernel rejected our module several times, and each failure revealed another hidden rule of kernel development.
+The kernel rejected the module several times, and each failure revealed another hidden rule of kernel development.
 
 This is a short story of every problem, every error message, and every lesson learned.
 
@@ -64,7 +64,7 @@ Codename:       n/a
 
 ## The First Attempt: A Simple Assembly Module
 
-The first idea was straightforward:
+The initial implementation focused on the minimum required kernel interfaces:
 
 1. Create an assembly file.
 2. Export `init_module` and `cleanup_module`.
@@ -114,7 +114,7 @@ Something was wrong inside the module.
 
 Time to investigate.
 
-## Problem 1: The .modinfo Disaster
+## Problem 1: The Hidden .modinfo Constraint
 
 The first clue appeared in the kernel log:
 
@@ -270,7 +270,7 @@ It came from the kernel configuration.
 
 Fedora enables modern CPU security mitigations, including return thunk protection.
 
-In short: certain AMD CPUs are vulnerable to [Speculative Return Stack Overflow (SRSO)](https://docs.kernel.org/admin-guide/hw-vuln/srso.html), where an attacker can poison the CPU's return address predictor to make the kernel leak data across privilege boundaries. The mitigation replaces every `ret` instruction with a jump to a "safe return" thunk (`__x86_return_thunk`) that forces the CPU to mispredict the return, neutralizing the attack. If you write kernel code in assembly, you must use the thunk too.
+Modern x86 Linux kernels may enable return-thunk based mitigations for [speculative execution vulnerabilities](https://docs.kernel.org/admin-guide/hw-vuln/srso.html). These mitigations change the expected return sequence for kernel code, and `objtool` enforces the generated pattern. The normal `ret` instruction is replaced with a jump to a "safe return" thunk (`__x86_return_thunk`) that forces the CPU to mispredict the return. Any kernel module written in assembly must follow the same convention.
 
 `objtool` warned:
 
@@ -304,7 +304,7 @@ and returns through it:
 jmp __x86_return_thunk
 ```
 
-Now our module follows Fedora's security model.
+Now the module follows the kernel's security model.
 
 ## Problem 5: The printk Mystery
 
@@ -343,7 +343,7 @@ The function exists.
 
 The kernel uses it.
 
-Why can our module not call it?
+Why can the module not call it?
 
 ### Looking Inside the Running Kernel
 
@@ -384,7 +384,7 @@ Not:
 
 `printk`
 
-The kernel prefixes many symbols with an underscore for assembly and linker-level callers. The first guess was simply using the wrong symbol name.
+The public kernel API is `printk()`, but the underlying kernel symbol involved in linking is `_printk`. Symbol visibility is controlled separately through kernel exports, so discovering a symbol in `/proc/kallsyms` does not mean it is available to loadable modules.
 
 ### Existing Symbol vs Exported Symbol
 
@@ -435,7 +435,7 @@ Module.symvers
 Allowed or rejected
 ```
 
-The symbol existed, but it was not available to our module in this configuration.
+The symbol existed, but it was not available to the module in this configuration.
 
 ### Discovering Kernel Symbols
 
@@ -561,7 +561,7 @@ The kernel provides it.
 .extern _printk
 ```
 
-Requests the kernel logging function. Note the underscore prefix — this is the actual exported symbol name visible to modules.
+The public kernel API is `printk()`, but the linking symbol is `_printk`. This is the actual exported symbol name visible to modules.
 
 ### Module Metadata
 
@@ -627,7 +627,7 @@ Writes the message into the kernel log.
 jmp __x86_return_thunk
 ```
 
-Returns using Fedora's protected return mechanism.
+Returns through the protected return thunk mandated by the kernel configuration.
 
 ### Cleanup Function
 
@@ -645,14 +645,14 @@ and returns safely.
 
 ## What I learned
 
-Writing a kernel module in pure assembly sounds like a small project. It is not.
+Writing this module was less about avoiding C and more about exposing everything C normally hides: ELF metadata, section placement, symbol visibility, calling conventions, and kernel security constraints.
 
-Every step revealed something hidden about how the kernel actually works. The `.modinfo` section is not just metadata — it is a contract with the build system. The ELF size annotations are not optional — `objtool` needs them to verify stack correctness. The section attributes are not decorative — they tell the kernel how to map memory. And the return thunk is not a quirk — it is a security boundary that Fedora enforces.
+The compiler is not merely translating instructions. It is participating in a contract between your code, the linker, the loader, and the kernel.
 
-The most humbling lesson was the `printk` mystery. The symbol exists. The kernel uses it. But modules cannot call it unless it is explicitly exported. And even then, the symbol name is `_printk`, not `printk`. This is the kind of detail that separates "I wrote some assembly" from "I wrote a kernel module."
+Removing that layer makes those contracts visible.
 
-If you want to understand how the Linux kernel really works, try writing a module without a compiler. You will fail. And in failing, you will learn more about kernel internals than any documentation could teach you.
+Every problem in this post — the duplicate `.modinfo`, the missing ELF size annotations, the wrong section attributes, the return thunk, the `_printk` symbol — is something a C compiler handles silently. Writing in assembly means handling all of it yourself.
 
 ---
 
-*The complete module from this post is only 30 lines of assembly. Getting there took five rounds of kernel rejection and a lot of reading kernel log messages.*
+*The complete module from this post is 30 lines of assembly. It was validated through five rounds of kernel rejection and careful reading of kernel log messages.*
