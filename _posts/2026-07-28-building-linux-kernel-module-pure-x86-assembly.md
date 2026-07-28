@@ -67,7 +67,7 @@ Codename:       n/a
 The initial implementation focused on the minimum required kernel interfaces:
 
 1. Create an assembly file.
-2. Export `init_module` and `cleanup_module`.
+2. Export entry and exit points.
 3. Call `printk` to write messages into the kernel log.
 4. Build with kbuild.
 5. Insert with `insmod`.
