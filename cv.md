@@ -159,7 +159,6 @@ permalink: /cv/
   <h2>Education</h2>
   <ul>
     <li><strong>Diplom-Ingenieur, CIW</strong> &mdash; Karlsruhe Institute of Technology (KIT), Germany, 2013</li>
-    <li><strong>Part-time Bachelor of Mathematics</strong> &mdash; Fernuniversität Hagen, currently attending</li>
   </ul>
 </section>
 
