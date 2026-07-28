@@ -30,7 +30,7 @@ The objective was simple to describe, but less simple to implement:
 
 Create a Linux kernel module in pure x86 assembly, load it into a modern Fedora kernel, and make it print messages when it loads and unloads.
 
-The final result is only a few lines of assembly.
+The final assembly implementation is surprisingly small, but the surrounding kernel contracts are where most of the complexity lives.
 
 There were a few bumps along the way.
 
