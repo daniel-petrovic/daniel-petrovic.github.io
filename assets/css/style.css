@@ -422,6 +422,11 @@ body.post-page .post-article {
   border-right: 1px solid #dbe3ec;
 }
 
+/* Code line numbers add noise to prose snippets, especially terminal output. */
+.post-page .prose .rouge-gutter {
+  display: none;
+}
+
 .prose .rouge-gutter .lineno {
   margin: 0;
   padding: 1rem 0.85rem;

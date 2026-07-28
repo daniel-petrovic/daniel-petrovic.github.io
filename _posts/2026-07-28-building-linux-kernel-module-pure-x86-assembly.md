@@ -26,6 +26,12 @@ What if the only language between your code and the Linux kernel is x86-64 assem
 
 I used GAS (GNU Assembler) for this — the same assembler the kernel build system already uses behind the scenes. The module is built with the kernel's kbuild system, so no external toolchain is needed.
 
+Although this experiment uses x86-64 as its host platform, the core lessons
+apply to embedded Linux on ARM64 (AArch64) and RISC-V as well: ELF section
+flags, symbol export tables, and build-time validation remain part of the
+module contract. The exact `objtool` checks and security-thunk sequences
+depend on the target architecture and kernel configuration.
+
 The objective was simple to describe, but less simple to implement:
 
 Create a Linux kernel module in pure x86 assembly, load it into a modern Fedora kernel, and make it print messages when it loads and unloads.
@@ -40,8 +46,7 @@ This post documents the investigation process, the failures encountered, and the
 
 Everything in this post was tested on:
 
-```
-$ uname -m
+<pre><code>$ uname -m
 x86_64
 
 $ uname -r
@@ -57,8 +62,7 @@ $ as --version | head -1
 GNU assembler version 2.46.1-1.fc44
 
 $ gcc --version | head -1
-gcc (GCC) 16.1.1 20260515 (Red Hat 16.1.1-2)
-```
+gcc (GCC) 16.1.1 20260515 (Red Hat 16.1.1-2)</code></pre>
 
 ---
 
@@ -127,6 +131,20 @@ msg_load:
     .asciz "asm_module: loaded\n"
 msg_unload:
     .asciz "asm_module: unloaded\n"
+```
+
+Save the assembly as `asm_module.S` and place this `Makefile` beside it:
+
+```make
+obj-m += asm_module.o
+
+KDIR := /lib/modules/$(shell uname -r)/build
+
+all:
+	$(MAKE) -C $(KDIR) M=$(PWD) modules
+
+clean:
+	$(MAKE) -C $(KDIR) M=$(PWD) clean
 ```
 
 The code was simple.
@@ -431,6 +449,19 @@ experiment has no C macro layer, so the implementation had to investigate the
 underlying link-visible symbol. Whether it can be used still depends on kernel
 exports.
 
+On this kernel, `include/linux/printk.h` declares `_printk()` and defines
+`printk` as a macro that ultimately calls it. Depending on the kernel
+configuration, the macro may call `_printk` directly or wrap it with
+additional indexing logic. Assembly does not run that C preprocessor mapping,
+so it must use the symbol resolved for the target kernel.
+
+The relevant definition is:
+
+<pre><code>/*
+ * See the vsnprintf() documentation for format string extensions over C99.
+ */
+#define printk(fmt, ...) printk_index_wrap(_printk, fmt, ##__VA_ARGS__)</code></pre>
+
 ### Existing Symbol vs Exported Symbol
 
 Kernel modules cannot call every function inside the kernel.
@@ -507,6 +538,10 @@ The kernel itself is the source of truth.
 
 After fixing the metadata, ELF information, sections, and return mechanism, the final structure looked like this:
 
+Before calling `_printk`, `xor eax,eax` sets `AL` to zero. Under the x86-64
+System V ABI, `AL` records the number of vector registers used for a variadic
+call; this module passes none, so the required value is zero.
+
 ```asm
 .intel_syntax noprefix
 
@@ -545,6 +580,21 @@ msg_load:
 msg_unload:
     .asciz "asm_module: unloaded\n"
 ```
+
+## Build, Load, and Verify
+
+From the directory containing `asm_module.S` and the `Makefile`:
+
+<pre><code>$ make
+$ sudo insmod asm_module.ko
+$ sudo dmesg | tail -n 1
+[...] asm_module: loaded
+
+$ sudo rmmod asm_module
+$ sudo dmesg | tail -n 1
+[...] asm_module: unloaded</code></pre>
+
+`rmmod` takes the loaded module name, so omit the `.ko` suffix.
 
 ## The takeaway
 
