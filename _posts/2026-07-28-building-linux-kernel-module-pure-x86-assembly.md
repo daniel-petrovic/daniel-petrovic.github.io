@@ -89,12 +89,12 @@ The first version looked like this:
 
 .extern printk                  # Kernel logging function
 
-.section .modinfo               # Module metadata (no "a" flag — bug)
+.section .modinfo               # Module metadata
 .asciz "license=GPL"
 .asciz "description=Minimal assembly Linux kernel module"
 .asciz "author=Daniel Petrovic"
 
-.text                           # Generic code section (missing "ax" flags — bug)
+.text                           # Generic code section
 
 .globl asm_init                 # Export init entry point
 .type asm_init, @function       # Mark as function in ELF
