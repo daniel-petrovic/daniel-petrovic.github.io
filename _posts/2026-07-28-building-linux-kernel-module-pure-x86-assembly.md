@@ -528,7 +528,7 @@ msg_unload:
     .asciz "asm_module: unloaded\n"
 ```
 
-## What I learned
+## The takeaway
 
 Writing this module was less about avoiding C and more about exposing everything C normally hides: ELF metadata, section placement, symbol visibility, calling conventions, and kernel security constraints.
 
