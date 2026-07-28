@@ -24,7 +24,7 @@ permalink: /
       I help product teams bring up embedded platforms, including embedded Linux systems, modernize C++ codebases, and solve reliability problems in embedded products and complex software systems.
     </p>
     <p>
-      The focus is narrow: embedded Linux, modern C++, Qt6/QML applications, OPC UA/CAN/RFID connectivity, production test automation, and performance debugging. I also work with Yocto-based systems when the project requires it.
+      Most of my work involves embedded Linux, modern C++, Qt6/QML applications, industrial connectivity (OPC UA, CAN, and RFID), production test automation, and performance debugging. I work with Yocto-based systems when they fit the project.
     </p>
     <p>
       Current work: writing a modern C++ compiler book and building an OPC UA framework from scratch.
