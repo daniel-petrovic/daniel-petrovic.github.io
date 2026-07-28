@@ -409,6 +409,10 @@ body.post-page .post-article {
   border: 0;
 }
 
+.prose .highlighter-rouge .highlight pre {
+  color: #0f172a;
+}
+
 .prose .rouge-table {
   width: 100%;
   border-collapse: collapse;
