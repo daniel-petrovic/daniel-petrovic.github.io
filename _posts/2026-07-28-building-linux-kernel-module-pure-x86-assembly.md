@@ -253,6 +253,8 @@ It came from the kernel configuration.
 
 Fedora enables modern CPU security mitigations, including return thunk protection.
 
+In short: certain AMD CPUs are vulnerable to [Speculative Return Stack Overflow (SRSO)](https://docs.kernel.org/admin-guide/hw-vuln/srso.html), where an attacker can poison the CPU's return address predictor to make the kernel leak data across privilege boundaries. The mitigation replaces every `ret` instruction with a jump to a "safe return" thunk (`__x86_return_thunk`) that forces the CPU to mispredict the return, neutralizing the attack. If you write kernel code in assembly, you must use the thunk too.
+
 `objtool` warned:
 
 ```
