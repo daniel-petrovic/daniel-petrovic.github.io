@@ -99,7 +99,7 @@ The first version looked like this:
 .globl asm_init
 .type asm_init, @function
 asm_init:
-    lea rdi, [rip + msg_load]  # First argument = message string
+    lea rdi, [rip + msg_load]  # RIP-relative: kernel modules are position-independent
     xor eax, eax
     call printk
     xor eax, eax
@@ -502,7 +502,7 @@ After fixing the metadata, ELF information, sections, and return mechanism, the 
 .globl init_module
 .type init_module,@function
 init_module:
-    lea rdi,[rip + msg_load]        # First argument (rdi) = message string
+    lea rdi,[rip + msg_load]        # RIP-relative: kernel modules are position-independent
     xor eax,eax                    # Zero AL for variadic call
     call _printk
     xor eax,eax                    # Return 0
