@@ -34,7 +34,7 @@ There were a few bumps along the way.
 
 The kernel rejected our module several times, and each failure revealed another hidden rule of kernel development.
 
-This is the story of every problem, every error message, and every lesson learned.
+This is a short story of every problem, every error message, and every lesson learned.
 
 ---
 
