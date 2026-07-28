@@ -24,6 +24,8 @@ What if we remove the compiler's help and write the entire module ourselves?
 
 What if the only language between our code and the Linux kernel is x86-64 assembly?
 
+We use the GNU assembler (GAS) for this — the same assembler the kernel build system already uses behind the scenes. The module is built with the kernel's kbuild system, so no external toolchain is needed.
+
 That was a small challenge:
 
 Create a Linux kernel module in pure x86 assembly, load it into a modern Fedora kernel, and make it print messages when it loads and unloads.
@@ -42,8 +44,9 @@ This is a short story of every problem, every error message, and every lesson le
 ## Table of contents
 {:.no_toc}
 
-* TOC
+- TOC
 {:toc}
+
 </nav>
 
 ## The First Attempt: A Simple Assembly Module
@@ -205,7 +208,6 @@ The next warning:
 
 ```
 unexpected non-allocatable section
-Did you forget to use "ax"/"aw" in a .S file?
 ```
 
 The kernel organizes memory into sections.
