@@ -113,7 +113,7 @@ asm_exit:
     call printk                # Log "asm_module: unloaded"
     ret                        # Return (bare ret — will fail under rethunk)
 
-.section .rodata               # Read-only data (no "a" flag)
+.section .rodata               # Read-only data
 
 msg_load:
     .asciz "asm_module: loaded\n"
