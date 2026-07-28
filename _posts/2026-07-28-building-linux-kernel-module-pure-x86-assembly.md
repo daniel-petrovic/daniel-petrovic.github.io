@@ -34,13 +34,16 @@ The final assembly implementation is surprisingly small, but the surrounding ker
 
 There were a few bumps along the way.
 
-The kernel rejected the module several times, and each failure revealed another hidden rule of kernel development.
+The kernel rejected several iterations of the module, and each failure revealed another hidden rule of kernel development.
 
-This is a short story of problems and lessons learned.
+This post documents the investigation process, the failures encountered, and the kernel mechanisms behind them.
 
 Everything in this post was tested on:
 
 ```
+$ uname -m
+x86_64
+
 $ uname -r
 7.1.4-204.fc44.x86_64
 
@@ -49,6 +52,12 @@ Distributor ID: Fedora
 Description:    Fedora Linux 44 (Workstation Edition)
 Release:        44
 Codename:       n/a
+
+$ as --version | head -1
+GNU assembler version 2.46.1-1.fc44
+
+$ gcc --version | head -1
+gcc (GCC) 16.1.1 20260515 (Red Hat 16.1.1-2)
 ```
 
 ---
@@ -134,7 +143,7 @@ Something was wrong inside the module.
 
 Time to investigate.
 
-## Problem 1: The Hidden .modinfo Constraint
+## Problem 1: How .modinfo Was Duplicated
 
 The first clue appeared in the kernel log:
 
@@ -142,15 +151,14 @@ The first clue appeared in the kernel log:
 Only one .modinfo section must exist.
 ```
 
-The problem was this:
+This was not because assembly modules must never define `.modinfo`. A pure
+assembly module normally supplies its own metadata:
 
 ```asm
 .section .modinfo
 ```
 
-A kernel module already receives metadata from the build system.
-
-Normally, a C module does this:
+A C module usually produces the same kind of metadata through macros:
 
 ```c
 MODULE_LICENSE("GPL");
@@ -158,9 +166,14 @@ MODULE_DESCRIPTION("Example module");
 MODULE_AUTHOR("Author");
 ```
 
-The kernel build system converts those macros into a `.modinfo` section automatically.
+Those macros emit `.modinfo` entries; kbuild does not automatically create
+them for every assembly source file. It can, however, generate additional
+module metadata such as `vermagic`.
 
-Our assembly module created another one.
+In this build, the generated metadata and the assembly-supplied metadata did
+not merge. The assembly section had no flags, while the generated section was
+allocatable, so the final module contained two separate sections with the same
+name:
 
 The kernel saw:
 
@@ -171,7 +184,8 @@ The kernel saw:
 
 and refused to load it.
 
-The fix was to create exactly one metadata section:
+The fix was to mark the assembly section allocatable so it was compatible with
+the generated metadata and the linker combined the entries into one section:
 
 ```asm
 .section .modinfo,"a"
@@ -181,9 +195,8 @@ The fix was to create exactly one metadata section:
 .asciz "author=Daniel Petrovic"
 ```
 
-The `"a"` flag tells the assembler:
-
-"This section contains allocated data."
+The `"a"` flag marks the section as allocatable, meaning it occupies memory in
+the loaded object.
 
 ## Problem 2: The Kernel Wants ELF Information
 
@@ -214,7 +227,9 @@ Tools like `objtool` inspect functions for:
 - security issues
 - control flow problems
 
-For that, the ELF file needs to describe where functions start and end.
+`objtool` relies on ELF symbol information to understand function boundaries.
+Without size annotations, assembly-written functions may not contain enough
+metadata for its analysis.
 
 The missing piece was:
 
@@ -222,7 +237,11 @@ The missing piece was:
 .size function_name, .-function_name
 ```
 
-This is a GAS (GNU Assembler) directive that writes the function's size into the ELF symbol table. The expression `.-function_name` subtracts the function's start address (`.` is the current location counter, `function_name` is where the function began). The result is the byte length of the function, which `objtool` and the kernel linker need to know where the function ends.
+This is a GAS (GNU Assembler) directive that writes the function's size into
+the ELF symbol table. The expression `.-function_name` subtracts the
+function's start address (`.` is the current location counter,
+`function_name` is where the function began). The result is the byte length
+of the function, allowing `objtool` to determine its boundary.
 
 Example:
 
@@ -290,7 +309,7 @@ It came from the kernel configuration.
 
 Fedora enables modern CPU security mitigations, including return thunk protection.
 
-Modern x86 Linux kernels may enable return-thunk based mitigations for [speculative execution vulnerabilities](https://docs.kernel.org/admin-guide/hw-vuln/srso.html). These mitigations change the expected return sequence for kernel code, and `objtool` enforces the generated pattern. The normal `ret` instruction is replaced with a jump to a "safe return" thunk (`__x86_return_thunk`) that forces the CPU to mispredict the return. Any kernel module written in assembly must follow the same convention.
+Modern x86 Linux kernels may enable return-thunk based mitigations for [speculative execution vulnerabilities](https://docs.kernel.org/admin-guide/hw-vuln/srso.html). These mitigations change the expected return sequence for kernel code, and `objtool` enforces the generated pattern. When they are enabled, kernel-generated code uses return thunks instead of direct `ret` instructions. The thunk provides the mitigation sequence required by the kernel configuration. Any kernel module written in assembly must follow the same convention.
 
 `objtool` warned:
 
@@ -335,7 +354,8 @@ asm_module: loaded
 asm_module: unloaded
 ```
 
-The first attempt used:
+The first attempt assumed that the C-level API name `printk` was also the
+link-visible symbol name:
 
 ```asm
 .extern printk
@@ -349,7 +369,7 @@ call printk
 
 This was the natural choice.
 
-Linux kernel code uses `printk()` everywhere.
+Kernel code uses the `printk()` interface.
 
 But the module build failed:
 
@@ -359,7 +379,7 @@ ERROR: "printk" [asm_module.ko] undefined!
 
 This was confusing.
 
-The function exists.
+The interface exists.
 
 The kernel uses it.
 
@@ -398,13 +418,18 @@ gave:
 
 This answered one question:
 
-The name is `_printk`.
+On this kernel, the implementation symbol is `_printk`.
 
 Not:
 
 `printk`
 
-The public kernel API is `printk()`, but the underlying kernel symbol involved in linking is `_printk`. Symbol visibility is controlled separately through kernel exports, so discovering a symbol in `/proc/kallsyms` does not mean it is available to loadable modules.
+`printk()` is a C function or macro interface, while `_printk` is an
+implementation symbol. Normal external C modules should use `printk()` or
+`pr_info()`, rather than call `_printk` directly. This pure-assembly
+experiment has no C macro layer, so the implementation had to investigate the
+underlying link-visible symbol. Whether it can be used still depends on kernel
+exports.
 
 ### Existing Symbol vs Exported Symbol
 
@@ -415,15 +440,8 @@ There is a difference between:
 - function **exists** in the kernel
 - function is **available** to modules
 
-The kernel source may contain:
-
-```c
-void printk(...)
-{
-}
-```
-
-but modules can only use symbols exported with:
+The kernel source may expose a C-level interface, but modules can only use
+symbols exported with:
 
 ```c
 EXPORT_SYMBOL()
@@ -443,7 +461,7 @@ So the chain is:
 Assembly
     |
     v
-extern _printk
+referenced symbol
     |
     v
 modpost checks exports
@@ -455,7 +473,9 @@ Module.symvers
 Allowed or rejected
 ```
 
-The symbol existed, but it was not available to the module in this configuration.
+The assembly implementation had to target an exported kernel symbol rather
+than the C source-level API. Seeing a symbol in `/proc/kallsyms` alone does not
+establish that it is available to a module.
 
 ### Discovering Kernel Symbols
 
@@ -490,8 +510,8 @@ After fixing the metadata, ELF information, sections, and return mechanism, the 
 ```asm
 .intel_syntax noprefix
 
-.extern _printk                     # C API is printk(), linking symbol is _printk
-.extern __x86_return_thunk          # Safe return thunk mandated by kernel security mitigations
+.extern _printk                     # Kernel symbol resolved from the running kernel
+.extern __x86_return_thunk          # Return thunk selected by the kernel configuration
 
 .section .modinfo,"a"               # "a" = allocatable
 .asciz "license=GPL"
@@ -503,7 +523,7 @@ After fixing the metadata, ELF information, sections, and return mechanism, the 
 .type init_module,@function
 init_module:
     lea rdi,[rip + msg_load]        # RIP-relative: kernel modules are position-independent
-    xor eax,eax                    # Zero AL for variadic call
+    xor eax,eax                    # Required by x86-64 SysV ABI before variadic calls
     call _printk
     xor eax,eax                    # Return 0
     jmp __x86_return_thunk         # Protected return instead of bare ret
@@ -534,7 +554,7 @@ The compiler is not merely translating instructions. It is participating in a co
 
 Removing that layer makes those contracts visible.
 
-Every problem in this post — the duplicate `.modinfo`, the missing ELF size annotations, the wrong section attributes, the return thunk, the `_printk` symbol — is something a C compiler handles silently. Writing in assembly means handling all of it yourself.
+Every problem in this post — the duplicate `.modinfo`, the missing ELF size annotations, the wrong section attributes, the return thunk, the `_printk` symbol — is something conventional C source and the kernel build system handle silently. Writing in assembly means handling all of it yourself.
 
 ---
 
