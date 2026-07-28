@@ -94,7 +94,7 @@ The first version looked like this:
 .asciz "description=Minimal assembly Linux kernel module"
 .asciz "author=Daniel Petrovic"
 
-.text
+.section .init.text
 
 .globl asm_init
 .type asm_init, @function
@@ -104,6 +104,8 @@ asm_init:
     call printk
     xor eax, eax
     ret
+
+.section .exit.text
 
 .globl asm_exit
 .type asm_exit, @function
