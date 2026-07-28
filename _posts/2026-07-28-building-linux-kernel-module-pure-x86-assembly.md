@@ -98,6 +98,28 @@ asm_init:
 
     xor eax, eax
     ret
+
+.size asm_init, .-asm_init
+
+.globl asm_exit
+.type asm_exit, @function
+
+asm_exit:
+    lea rdi, [rip + msg_unload]
+    xor eax, eax
+    call printk
+
+    ret
+
+.size asm_exit, .-asm_exit
+
+.section .rodata
+
+msg_load:
+    .asciz "asm_module: loaded\n"
+
+msg_unload:
+    .asciz "asm_module: unloaded\n"
 ```
 
 The code was simple.
