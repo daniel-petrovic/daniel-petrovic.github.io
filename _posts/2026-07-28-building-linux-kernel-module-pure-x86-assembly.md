@@ -72,6 +72,8 @@ The first idea was straightforward:
 4. Build with kbuild.
 5. Insert with `insmod`.
 
+For a deeper look at what happens under the hood when you run `insmod`, see [Module Loading Internals](https://kernel-internals.org/modules/module-loading-internals/).
+
 The first version looked like this:
 
 ```asm
