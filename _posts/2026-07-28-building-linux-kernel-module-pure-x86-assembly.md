@@ -202,6 +202,8 @@ The missing piece was:
 .size function_name, .-function_name
 ```
 
+This is a GAS (GNU Assembler) directive that writes the function's size into the ELF symbol table. The expression `.-function_name` subtracts the function's start address (`.` is the current location counter, `function_name` is where the function began). The result is the byte length of the function, which `objtool` and the kernel linker need to know where the function ends.
+
 Example:
 
 ```asm
