@@ -619,7 +619,7 @@ Makes the entry point visible.
 .type init_module,@function
 ```
 
-Marks the ELF symbol as a function.
+Tells the assembler and linker that this symbol is a function (as opposed to data). The ELF symbol table stores this type information, and the kernel uses it to determine how to treat the symbol: functions go into executable sections, can be traced by `objtool`, and show up with a `T` (text) entry in `/proc/kallsyms`. Without `@function`, the symbol would be typed as `STT_NOTYPE`, which can cause the kernel to reject it or misclassify it during module loading.
 
 ```asm
 lea rdi,[rip + msg_load]
