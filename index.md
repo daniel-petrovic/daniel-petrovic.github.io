@@ -91,11 +91,11 @@ permalink: /
 </section>
 
 <section class="panel">
-  <p class="eyebrow">Availability</p>
+  <p class="eyebrow">Get in touch</p>
   <h2>Discuss an embedded Linux project</h2>
-  <p>Available for limited fractional consulting now by arrangement, and full project engagements starting Autumn 2026.</p>
+  <p>For project or general inquiries, please get in touch.</p>
   <div class="hero-actions">
-    <a class="button" href="mailto:contact@petrovich.ch">Inquire About Availability</a>
+    <a class="button" href="mailto:contact@petrovich.ch">Get in Touch</a>
     <a class="button button-secondary" href="{{ '/cv/' | relative_url }}">View Services</a>
   </div>
 </section>

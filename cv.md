@@ -26,8 +26,8 @@ permalink: /cv/
     </article>
 
     <article class="card">
-      <h2>Availability</h2>
-      <p>Available for limited fractional consulting now by arrangement, and full project engagements starting Autumn 2026.</p>
+      <h2>Get in touch</h2>
+      <p>For project or general inquiries, please get in touch.</p>
     </article>
   </div>
 </section>
@@ -138,11 +138,11 @@ permalink: /cv/
 </section>
 
 <section class="panel">
-  <p class="eyebrow">Availability</p>
+  <p class="eyebrow">Get in touch</p>
   <h2>Need help with an embedded Linux project?</h2>
-  <p>Available for limited fractional consulting now by arrangement, and full project engagements starting Autumn 2026.</p>
+  <p>For project or general inquiries, please get in touch.</p>
   <div class="hero-actions">
-    <a class="button" href="mailto:contact@petrovich.ch">Inquire About Availability</a>
+    <a class="button" href="mailto:contact@petrovich.ch">Get in Touch</a>
   </div>
 </section>
 
