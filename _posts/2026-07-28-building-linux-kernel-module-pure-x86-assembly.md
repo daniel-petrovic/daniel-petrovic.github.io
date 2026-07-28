@@ -85,36 +85,35 @@ A kernel module is organized into ELF sections. The ones that matter for a minim
 The first version looked like this:
 
 ```asm
-.intel_syntax noprefix          # Use Intel syntax
+.intel_syntax noprefix
 
-.extern printk                  # Kernel logging function
+.extern printk
 
 .section .modinfo               # Module metadata
 .asciz "license=GPL"
 .asciz "description=Minimal assembly Linux kernel module"
 .asciz "author=Daniel Petrovic"
 
-.text                           # Generic code section
+.text
 
-.globl asm_init                 # Export init entry point
-.type asm_init, @function       # Mark as function in ELF
+.globl asm_init
+.type asm_init, @function
 asm_init:
     lea rdi, [rip + msg_load]  # First argument = message string
-    xor eax, eax               # Zero AL for variadic call
-    call printk                # Log "asm_module: loaded"
-    xor eax, eax               # Return 0
-    ret                        # Return (bare ret — will fail under rethunk)
+    xor eax, eax
+    call printk
+    xor eax, eax
+    ret
 
-.globl asm_exit                # Export cleanup entry point
-.type asm_exit, @function      # Mark as function in ELF
+.globl asm_exit
+.type asm_exit, @function
 asm_exit:
-    lea rdi, [rip + msg_unload] # First argument = message string
-    xor eax, eax               # Zero AL for variadic call
-    call printk                # Log "asm_module: unloaded"
-    ret                        # Return (bare ret — will fail under rethunk)
+    lea rdi, [rip + msg_unload]
+    xor eax, eax
+    call printk
+    ret
 
-.section .rodata               # Read-only data
-
+.section .rodata
 msg_load:
     .asciz "asm_module: loaded\n"
 msg_unload:
@@ -489,42 +488,42 @@ The kernel itself is the source of truth.
 After fixing the metadata, ELF information, sections, and return mechanism, the final structure looked like this:
 
 ```asm
-.intel_syntax noprefix              # Use Intel syntax instead of AT&T (mov rax, rbx vs mov %rbx,%rax)
+.intel_syntax noprefix
 
-.extern _printk                     # Kernel logging function (C API is printk(), linking symbol is _printk)
+.extern _printk                     # C API is printk(), linking symbol is _printk
 .extern __x86_return_thunk          # Safe return thunk mandated by kernel security mitigations
 
-.section .modinfo,"a"               # Module metadata — "a" = allocatable section
-.asciz "license=GPL"                # Required by kernel to determine module licensing
+.section .modinfo,"a"               # "a" = allocatable
+.asciz "license=GPL"
 .asciz "description=Minimal assembly Linux kernel module"
 .asciz "author=Daniel Petrovic"
 
-.section .init.text,"ax"            # Init code — "ax" = allocatable + executable; kernel frees this after init
-.globl init_module                  # Export entry point so kernel loader can find it
-.type init_module,@function         # Mark symbol as function in ELF table (not STT_NOTYPE)
+.section .init.text,"ax"            # "ax" = allocatable + executable; kernel frees this after init
+.globl init_module
+.type init_module,@function
 init_module:
-    lea rdi,[rip + msg_load]        # First argument (rdi) = pointer to message string
-    xor eax,eax                    # Zero AL for variadic call (number of vector args in xmm regs)
-    call _printk                   # Write "asm_module: loaded" to kernel log
-    xor eax,eax                    # Return value 0 = success
-    jmp __x86_return_thunk         # Return through protected thunk instead of bare ret
-.size init_module,.-init_module    # ELF size annotation so objtool can analyze the function
-
-.section .exit.text,"ax"           # Exit code — "ax" = allocatable + executable; called on rmmod
-.globl cleanup_module              # Export cleanup entry point
-.type cleanup_module,@function     # Mark as function in ELF symbol table
-cleanup_module:
-    lea rdi,[rip + msg_unload]     # First argument = pointer to unload message
+    lea rdi,[rip + msg_load]        # First argument (rdi) = message string
     xor eax,eax                    # Zero AL for variadic call
-    call _printk                   # Write "asm_module: unloaded" to kernel log
-    jmp __x86_return_thunk         # Return through protected thunk
-.size cleanup_module,.-cleanup_module  # ELF size annotation
+    call _printk
+    xor eax,eax                    # Return 0
+    jmp __x86_return_thunk         # Protected return instead of bare ret
+.size init_module,.-init_module
 
-.section .rodata,"a"               # Read-only data — "a" = allocatable
+.section .exit.text,"ax"           # Exit code — called on rmmod
+.globl cleanup_module
+.type cleanup_module,@function
+cleanup_module:
+    lea rdi,[rip + msg_unload]
+    xor eax,eax
+    call _printk
+    jmp __x86_return_thunk
+.size cleanup_module,.-cleanup_module
+
+.section .rodata,"a"
 msg_load:
-    .asciz "asm_module: loaded\n"  # Null-terminated string for init message
+    .asciz "asm_module: loaded\n"
 msg_unload:
-    .asciz "asm_module: unloaded\n" # Null-terminated string for cleanup message
+    .asciz "asm_module: unloaded\n"
 ```
 
 ## What I learned
