@@ -99,8 +99,6 @@ asm_init:
     xor eax, eax
     ret
 
-.size asm_init, .-asm_init
-
 .globl asm_exit
 .type asm_exit, @function
 
@@ -110,8 +108,6 @@ asm_exit:
     call printk
 
     ret
-
-.size asm_exit, .-asm_exit
 
 .section .rodata
 
