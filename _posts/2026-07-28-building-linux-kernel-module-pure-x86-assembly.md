@@ -486,180 +486,43 @@ The kernel itself is the source of truth.
 After fixing the metadata, ELF information, sections, and return mechanism, the final structure looked like this:
 
 ```asm
-.intel_syntax noprefix
+.intel_syntax noprefix              # Use Intel syntax instead of AT&T (mov rax, rbx vs mov %rbx,%rax)
 
-.extern _printk
-.extern __x86_return_thunk
+.extern _printk                     # Kernel logging function (C API is printk(), linking symbol is _printk)
+.extern __x86_return_thunk          # Safe return thunk mandated by kernel security mitigations
 
-
-.section .modinfo,"a"
-
-.asciz "license=GPL"
+.section .modinfo,"a"               # Module metadata — "a" = allocatable section
+.asciz "license=GPL"                # Required by kernel to determine module licensing
 .asciz "description=Minimal assembly Linux kernel module"
 .asciz "author=Daniel Petrovic"
 
-
-.section .init.text,"ax"
-
-.globl init_module
-.type init_module,@function
-
+.section .init.text,"ax"            # Init code — "ax" = allocatable + executable; kernel frees this after init
+.globl init_module                  # Export entry point so kernel loader can find it
+.type init_module,@function         # Mark symbol as function in ELF table (not STT_NOTYPE)
 init_module:
+    lea rdi,[rip + msg_load]        # First argument (rdi) = pointer to message string
+    xor eax,eax                    # Zero AL for variadic call (number of vector args in xmm regs)
+    call _printk                   # Write "asm_module: loaded" to kernel log
+    xor eax,eax                    # Return value 0 = success
+    jmp __x86_return_thunk         # Return through protected thunk instead of bare ret
+.size init_module,.-init_module    # ELF size annotation so objtool can analyze the function
 
-    lea rdi,[rip + msg_load]
-    xor eax,eax
-    call _printk
-
-    xor eax,eax
-    jmp __x86_return_thunk
-
-.size init_module,.-init_module
-
-
-.section .exit.text,"ax"
-
-.globl cleanup_module
-.type cleanup_module,@function
-
+.section .exit.text,"ax"           # Exit code — "ax" = allocatable + executable; called on rmmod
+.globl cleanup_module              # Export cleanup entry point
+.type cleanup_module,@function     # Mark as function in ELF symbol table
 cleanup_module:
+    lea rdi,[rip + msg_unload]     # First argument = pointer to unload message
+    xor eax,eax                    # Zero AL for variadic call
+    call _printk                   # Write "asm_module: unloaded" to kernel log
+    jmp __x86_return_thunk         # Return through protected thunk
+.size cleanup_module,.-cleanup_module  # ELF size annotation
 
-    lea rdi,[rip + msg_unload]
-    xor eax,eax
-    call _printk
-
-    jmp __x86_return_thunk
-
-.size cleanup_module,.-cleanup_module
-
-
-.section .rodata,"a"
-
+.section .rodata,"a"               # Read-only data — "a" = allocatable
 msg_load:
-    .asciz "asm_module: loaded\n"
-
+    .asciz "asm_module: loaded\n"  # Null-terminated string for init message
 msg_unload:
-    .asciz "asm_module: unloaded\n"
+    .asciz "asm_module: unloaded\n" # Null-terminated string for cleanup message
 ```
-
-## Understanding the Final Code
-
-### Selecting Intel Syntax
-
-```asm
-.intel_syntax noprefix
-```
-
-The GNU assembler normally uses AT&T syntax.
-
-This switches to Intel style:
-
-```asm
-mov rax, rbx
-```
-
-instead of:
-
-```asm
-mov %rbx,%rax
-```
-
-### External Symbols
-
-```asm
-.extern __x86_return_thunk
-```
-
-Tells the assembler:
-
-"This symbol exists somewhere else."
-
-The kernel provides it.
-
-```asm
-.extern _printk
-```
-
-The public kernel API is `printk()`, but the linking symbol is `_printk`. This is the actual exported symbol name visible to modules.
-
-### Module Metadata
-
-```asm
-.section .modinfo,"a"
-```
-
-Creates module information.
-
-The kernel reads this when loading the module.
-
-```asm
-.asciz "license=GPL"
-```
-
-Adds a null-terminated string.
-
-The kernel uses this to determine module licensing.
-
-### Initialization Function
-
-```asm
-.section .init.text,"ax"
-```
-
-Places the initialization code into the init section.
-
-After initialization, the kernel can free this memory.
-
-```asm
-.globl init_module
-```
-
-Makes the entry point visible.
-
-```asm
-.type init_module,@function
-```
-
-Tells the assembler and linker that this symbol is a function (as opposed to data). The ELF symbol table stores this type information, and the kernel uses it to determine how to treat the symbol: functions go into executable sections, can be traced by `objtool`, and show up with a `T` (text) entry in `/proc/kallsyms`. Without `@function`, the symbol would be typed as `STT_NOTYPE`, which can cause the kernel to reject it or misclassify it during module loading.
-
-```asm
-lea rdi,[rip + msg_load]
-```
-
-Loads the message address into the first argument register.
-
-The x86-64 calling convention passes the first argument in `rdi`.
-
-```asm
-xor eax,eax
-```
-
-Required before calling variadic functions like `_printk`.
-
-```asm
-call _printk
-```
-
-Writes the message into the kernel log.
-
-```asm
-jmp __x86_return_thunk
-```
-
-Returns through the protected return thunk mandated by the kernel configuration.
-
-### Cleanup Function
-
-The cleanup function is almost identical.
-
-The kernel calls `cleanup_module` when `rmmod asm_module` is executed.
-
-It prints:
-
-```
-asm_module: unloaded
-```
-
-and returns safely.
 
 ## What I learned
 
