@@ -38,6 +38,19 @@ The kernel rejected our module several times, and each failure revealed another 
 
 This is a short story of every problem, every error message, and every lesson learned.
 
+Everything in this post was tested on:
+
+```
+$ uname -r
+7.1.4-204.fc44.x86_64
+
+$ lsb_release -a
+Distributor ID: Fedora
+Description:    Fedora Linux 44 (Workstation Edition)
+Release:        44
+Codename:       n/a
+```
+
 ---
 
 <nav class="table-of-contents" markdown="1">
