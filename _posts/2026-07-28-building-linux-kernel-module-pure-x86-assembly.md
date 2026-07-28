@@ -96,20 +96,18 @@ The first version looked like this:
 
 .section .init.text
 
-.globl asm_init
-.type asm_init, @function
-asm_init:
+.globl init_module
+.type init_module, @function
+init_module:
     lea rdi, [rip + msg_load]  # RIP-relative: kernel modules are position-independent
     xor eax, eax
     call printk
     xor eax, eax
     ret
 
-.section .exit.text
-
-.globl asm_exit
-.type asm_exit, @function
-asm_exit:
+.globl cleanup_module
+.type cleanup_module, @function
+cleanup_module:
     lea rdi, [rip + msg_unload]
     xor eax, eax
     call printk
@@ -192,8 +190,8 @@ The `"a"` flag tells the assembler:
 After fixing `.modinfo`, the build continued but `objtool` complained:
 
 ```
-asm_init() is missing an ELF size annotation
-asm_exit() is missing an ELF size annotation
+init_module() is missing an ELF size annotation
+cleanup_module() is missing an ELF size annotation
 ```
 
 In normal assembly, this is perfectly valid:
