@@ -77,43 +77,38 @@ For a deeper look at what happens under the hood when you run `insmod`, see [Mod
 The first version looked like this:
 
 ```asm
-.intel_syntax noprefix
+.intel_syntax noprefix          # Use Intel syntax
 
-.extern printk
+.extern printk                  # Kernel logging function
 
-.section .modinfo
+.section .modinfo               # Module metadata (no "a" flag — bug)
 .asciz "license=GPL"
 .asciz "description=Minimal assembly Linux kernel module"
 .asciz "author=Daniel Petrovic"
 
-.text
+.text                           # Generic code section (missing "ax" flags — bug)
 
-.globl asm_init
-.type asm_init, @function
-
+.globl asm_init                 # Export init entry point
+.type asm_init, @function       # Mark as function in ELF
 asm_init:
-    lea rdi, [rip + msg_load]
-    xor eax, eax
-    call printk
+    lea rdi, [rip + msg_load]  # First argument = message string
+    xor eax, eax               # Zero AL for variadic call
+    call printk                # Log "asm_module: loaded"
+    xor eax, eax               # Return 0
+    ret                        # Return (bare ret — will fail under rethunk)
 
-    xor eax, eax
-    ret
-
-.globl asm_exit
-.type asm_exit, @function
-
+.globl asm_exit                # Export cleanup entry point
+.type asm_exit, @function      # Mark as function in ELF
 asm_exit:
-    lea rdi, [rip + msg_unload]
-    xor eax, eax
-    call printk
+    lea rdi, [rip + msg_unload] # First argument = message string
+    xor eax, eax               # Zero AL for variadic call
+    call printk                # Log "asm_module: unloaded"
+    ret                        # Return (bare ret — will fail under rethunk)
 
-    ret
-
-.section .rodata
+.section .rodata               # Read-only data (no "a" flag)
 
 msg_load:
     .asciz "asm_module: loaded\n"
-
 msg_unload:
     .asciz "asm_module: unloaded\n"
 ```
