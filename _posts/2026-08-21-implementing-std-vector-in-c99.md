@@ -11,7 +11,7 @@ tags:
 
 `std::vector` is one of those C++ facilities that feels obvious until you try to rebuild its useful core without templates, constructors, or destructors.
 
-The implementation in my [linux-system-playground](https://codeberg.org/daniel-petrovic/linux-system-playground/src/branch/main/stl/std_vector.h) is a small C99-style, typed dynamic array. It is not an STL implementation--and it does not try to be one. Its purpose is to expose the machinery that makes a vector useful: contiguous storage, a logical size, allocated capacity, and controlled reallocation.
+The implementation in my [linux-system-playground](https://codeberg.org/daniel-petrovic/linux-system-playground/src/branch/main/stl/include/stl/std_vector.h) is a small C99-style, typed dynamic array. It is not an STL implementation--and it does not try to be one. Its purpose is to expose the machinery that makes a vector useful: contiguous storage, a logical size, allocated capacity, and controlled reallocation.
 
 I first looked what is available out there and found [Gena library](https://github.com/cher-nov/Gena). Although it looks very advanced, I don't quite like its cumbersome interface and macro-meta-setup machinery needed. I rather prefer simplistic design (for simple use cases) and tried to build up the simplest possible working solution. Something the kind of a 2 step approach:
 
