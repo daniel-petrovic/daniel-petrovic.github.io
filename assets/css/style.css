@@ -481,6 +481,41 @@ body.post-page .post-article {
   color: #2563eb;
 }
 
+/* Table styling */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.75rem 0;
+  font-size: 0.95rem;
+}
+
+.prose thead th {
+  background: var(--bg-soft);
+  border-bottom: 2px solid var(--accent);
+  color: var(--text);
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.prose tbody td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 1rem;
+  vertical-align: top;
+}
+
+.prose tbody tr:hover {
+  background: var(--bg-soft);
+}
+
+.prose tbody tr:nth-child(even) {
+  background: rgba(248, 250, 252, 0.5);
+}
+
+.prose tbody tr:nth-child(even):hover {
+  background: var(--bg-soft);
+}
+
 .site-footer {
   border-top: 1px solid var(--border);
 }
