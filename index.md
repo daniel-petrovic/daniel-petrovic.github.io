@@ -11,7 +11,7 @@ permalink: /
     Embedded Linux and modern C++ for embedded products, with strong Qt6/QML application experience and Yocto-based systems when needed.
   </p>
   <div class="hero-actions">
-    <a class="button" href="mailto:contact@petrovich.ch">Discuss a Project</a>
+    <a class="button" href="{{ '/contact/' | relative_url }}">Discuss a Project</a>
     <a class="button button-secondary" href="{{ '/cv/' | relative_url }}">Services &amp; Experience</a>
     <a class="button button-secondary" href="https://github.com/daniel-petrovic">GitHub</a>
   </div>
@@ -95,7 +95,7 @@ permalink: /
   <h2>Discuss an embedded Linux project</h2>
   <p>For project or general inquiries, please get in touch.</p>
   <div class="hero-actions">
-    <a class="button" href="mailto:contact@petrovich.ch">Get in Touch</a>
+    <a class="button" href="{{ '/contact/' | relative_url }}">Get in Touch</a>
     <a class="button button-secondary" href="{{ '/cv/' | relative_url }}">View Services</a>
   </div>
 </section>

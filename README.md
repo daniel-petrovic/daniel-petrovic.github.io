@@ -35,6 +35,20 @@ bundle exec jekyll serve
 bundle exec jekyll build
 ```
 
+## Contact form setup
+
+The contact page shows LinkedIn until `formspree_form_id` in `_config.yml` is set.
+
+1. Create a form in Formspree and verify its recipient mailbox privately in the dashboard.
+2. Copy only the public ID from `https://formspree.io/f/FORM_ID` into `formspree_form_id`. Never commit the recipient email or an API key.
+3. Keep Formspree spam filtering and hosted CAPTCHA protection enabled. The form includes the supported `_gotcha` honeypot.
+4. Review applicable business disclosures and privacy requirements before publishing. The brief form disclosure is not a complete site privacy policy.
+5. Rebuild/restart Jekyll after changing configuration. Send one clearly labeled test inquiry and verify delivery, reply routing, and the hosted confirmation page before announcing the form.
+
+Run `bundle exec ruby tests/contact_check.rb` to check configured and unconfigured rendering. No submissions are sent by this check.
+
+Removing current contact details does not erase public Git history or previously collected copies. History rewriting and mailbox changes are separate tasks.
+
 ## Structure
 
 ```text

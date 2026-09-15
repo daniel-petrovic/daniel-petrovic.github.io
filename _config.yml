@@ -2,6 +2,8 @@ title: Senior Embedded Linux & C++ Consultant
 description: Embedded Linux and modern C++ for embedded products, with Qt6/QML applications and Yocto-based systems when needed.
 url: https://daniel-petrovic.github.io
 baseurl: ""
+# Public Formspree ID only; configure the recipient privately in Formspree.
+formspree_form_id: "xyeyrrlb"
 markdown: kramdown
 permalink: /blog/:title/
 kramdown:
@@ -24,4 +26,5 @@ defaults:
 
 exclude:
   - README.md
+  - tests
   - vendor

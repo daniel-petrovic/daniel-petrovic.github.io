@@ -11,7 +11,7 @@ permalink: /cv/
     Embedded Linux and modern C++ for embedded products, with strong Qt6/QML application experience and Yocto-based systems when needed.
   </p>
   <div class="hero-actions">
-    <a class="button" href="mailto:contact@petrovich.ch">Discuss a Project</a>
+    <a class="button" href="{{ '/contact/' | relative_url }}">Discuss a Project</a>
   </div>
 
   <div class="grid-two">
@@ -19,15 +19,14 @@ permalink: /cv/
       <h2>Contact</h2>
       <ul class="plain-list">
         <li><strong>Location:</strong> Bregenz, Austria</li>
-        <li><strong>Telephone:</strong> +43 677 615 948 84</li>
-        <li><strong>Email:</strong> <a href="mailto:contact@petrovich.ch">contact@petrovich.ch</a></li>
+        <li><a href="{{ '/contact/' | relative_url }}">Contact Daniel</a></li>
         <li><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/daniel-petrovic/">linkedin.com/in/daniel-petrovic</a></li>
       </ul>
     </article>
 
     <article class="card">
       <h2>Get in touch</h2>
-      <p>For project or general inquiries, please get in touch.</p>
+      <p>For project or general inquiries, please <a href="{{ '/contact/' | relative_url }}">use the contact form</a>.</p>
     </article>
   </div>
 </section>
@@ -142,7 +141,7 @@ permalink: /cv/
   <h2>Need help with an embedded Linux project?</h2>
   <p>For project or general inquiries, please get in touch.</p>
   <div class="hero-actions">
-    <a class="button" href="mailto:contact@petrovich.ch">Get in Touch</a>
+    <a class="button" href="{{ '/contact/' | relative_url }}">Get in Touch</a>
   </div>
 </section>
 
