@@ -1,6 +1,6 @@
 ---
 title: Contact
-description: Contact Daniel Petrovic about embedded Linux and modern C++ projects.
+description: Contact Daniel Petrovic about software projects, embedded systems, network applications, industrial automation, and process-engineering software.
 permalink: /contact/
 ---
 
@@ -24,6 +24,7 @@ permalink: /contact/
       <textarea id="contact-message" name="message" rows="7" required></textarea>
     </div>
     <input type="text" name="_gotcha" hidden tabindex="-1" autocomplete="off" aria-hidden="true">
+    <p class="contact-privacy">Your details and message are processed by Formspree to deliver your inquiry. <a href="https://formspree.io/legal/privacy-policy/">Formspree privacy policy</a>.</p>
     <button class="button" type="submit">Send</button>
   </form>
 {% endif %}

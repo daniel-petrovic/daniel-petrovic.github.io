@@ -1,14 +1,14 @@
 ---
 title: Home
-description: Senior Embedded Linux & C++ Consultant for embedded products, Qt6/QML applications, and Yocto-based systems.
+description: Software engineering for embedded systems, network applications, industrial automation, and process-engineering software.
 permalink: /
 ---
 
 <section class="hero">
-  <p class="eyebrow">Senior Embedded Linux &amp; C++ Consultant</p>
+  <p class="eyebrow">Dipl.-Ing. (TU)</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    Embedded Linux and modern C++ for embedded products, with strong Qt6/QML application experience and Yocto-based systems when needed.
+    I build reliable software for embedded systems, networked applications, industrial automation, and process engineering, with deep experience in modern C++, Linux, Qt, and systems integration.
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/contact/' | relative_url }}">Discuss a Project</a>
@@ -21,10 +21,10 @@ permalink: /
   <article class="panel">
     <h2>What I do</h2>
     <p>
-      I help product teams bring up embedded platforms, including embedded Linux systems, modernize C++ codebases, and solve reliability problems in embedded products and complex software systems.
+      I help technical product teams build reliable software across embedded systems, networked applications, industrial automation, and process-engineering environments.
     </p>
     <p>
-      Most of my work involves embedded Linux, modern C++, Qt6/QML applications, industrial connectivity (OPC UA, CAN, and RFID), production test automation, and performance debugging. I work with Yocto-based systems when they fit the project.
+      Most of my work involves embedded Linux, modern C++, Qt6/QML applications, industrial connectivity (OPC UA, CAN, RFID, and PLCs), network protocols, simulation tooling, production test automation, and performance debugging. I work with Yocto-based systems when they fit the project.
     </p>
     <p>
       Current work: writing a book about building a compiler in modern C++ and building an OPC UA framework from scratch in modern C++.
@@ -34,9 +34,11 @@ permalink: /
     <h2>Specialties</h2>
     <ul class="plain-list">
       <li>Embedded Linux platform bring-up</li>
-      <li>Modern C++ (C++17/20/23)</li>
+      <li>Modern C++ (C++17/20/23/26)</li>
       <li>Qt6 &amp; QML</li>
+      <li>Network applications and protocol integration</li>
       <li>OPC UA, CAN/CANopen, RFID, PLC integration</li>
+      <li>Industrial automation and process-engineering software</li>
       <li>Debugging, performance work, and CI/CD implementation</li>
     </ul>
   </article>
@@ -45,8 +47,7 @@ permalink: /
 <section class="panel">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Engagement packages</p>
-      <h2>How I help embedded teams</h2>
+      <h2>How I help technical product teams</h2>
     </div>
   </div>
   <div class="card-grid">
@@ -63,8 +64,16 @@ permalink: /
       <p>OPC UA, CAN/CANopen, RFID, PLC communication, production test automation, and device-to-cloud connectivity.</p>
     </article>
     <article class="card">
+      <h3>Network Applications &amp; Protocols</h3>
+      <p>Protocol integration, client/server applications, diagnostics, and reliable communication between devices, services, and production systems.</p>
+    </article>
+    <article class="card">
+      <h3>Process Engineering Software</h3>
+      <p>Simulation tools, calculation workflows, industrial data handling, and software that supports engineering decisions in production environments.</p>
+    </article>
+    <article class="card">
       <h3>C++ Modernization &amp; Debugging</h3>
-      <p>C++17/20/23 modernization, memory/thread debugging, performance work, build speedups, and CI/CD pipeline setup or cleanup.</p>
+      <p>C++20/23/26 modernization, memory/thread debugging, performance work, build speedups, and CI/CD pipeline setup or cleanup.</p>
     </article>
   </div>
 </section>
@@ -72,7 +81,6 @@ permalink: /
 <section class="panel">
   <div class="section-header">
     <div>
-      <p class="eyebrow">Technical proof</p>
       <h2>Selected writing</h2>
     </div>
     <a href="{{ '/blog/' | relative_url }}">See all posts</a>
@@ -91,8 +99,7 @@ permalink: /
 </section>
 
 <section class="panel">
-  <p class="eyebrow">Get in touch</p>
-  <h2>Discuss an embedded Linux project</h2>
+  <h2>Discuss a project</h2>
   <p>For project or general inquiries, please get in touch.</p>
   <div class="hero-actions">
     <a class="button" href="{{ '/contact/' | relative_url }}">Get in Touch</a>

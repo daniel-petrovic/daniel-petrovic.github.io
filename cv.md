@@ -1,14 +1,13 @@
 ---
 title: Services & Experience
-description: Senior Embedded Linux & C++ Consultant for embedded products, Qt6/QML applications, and Yocto-based systems.
+description: Software engineering for embedded systems, network applications, industrial automation, and process-engineering software.
 permalink: /cv/
 ---
 
 <section class="panel">
-  <p class="eyebrow">Senior Embedded Linux &amp; C++ Consultant</p>
   <h1>Daniel Petrovic</h1>
   <p class="lead">
-    Embedded Linux and modern C++ for embedded products, with strong Qt6/QML application experience and Yocto-based systems when needed.
+    I build reliable software for embedded systems, networked applications, industrial automation, and process engineering, with deep experience in modern C++, Linux, Qt, and systems integration.
   </p>
   <div class="hero-actions">
     <a class="button" href="{{ '/contact/' | relative_url }}">Discuss a Project</a>
@@ -54,6 +53,14 @@ permalink: /cv/
     <article class="card">
       <h3>Industrial Automation Integration</h3>
       <p>OPC UA server/client integration, CAN/CANopen communication, RFID, PLC interfacing (Siemens S7), and IoT connectivity (Azure IoT).</p>
+    </article>
+    <article class="card">
+      <h3>Network Applications &amp; Protocols</h3>
+      <p>Client/server software, protocol integration, diagnostics, and reliable communication between devices, services, and production systems.</p>
+    </article>
+    <article class="card">
+      <h3>Process Engineering Software</h3>
+      <p>Numerical tools, simulation workflows, industrial data handling, and software that supports engineering decisions in production environments.</p>
     </article>
     <article class="card">
       <h3>Software Architecture &amp; Mentoring</h3>
@@ -138,7 +145,7 @@ permalink: /cv/
 
 <section class="panel">
   <p class="eyebrow">Get in touch</p>
-  <h2>Need help with an embedded Linux project?</h2>
+  <h2>Need help with a software project?</h2>
   <p>For project or general inquiries, please get in touch.</p>
   <div class="hero-actions">
     <a class="button" href="{{ '/contact/' | relative_url }}">Get in Touch</a>

@@ -5,7 +5,6 @@ permalink: /blog/
 ---
 
 <section class="panel">
-  <p class="eyebrow">Writing</p>
   <h1>Blog</h1>
   <p class="lead">
     A place for engineering notes, experiments, and posts about coding topics that are worth

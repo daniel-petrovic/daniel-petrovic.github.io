@@ -1,6 +1,6 @@
 ---
-title: "From Templates to Reflection, Part 1: Back to Basics with type_vector in C++17"
-description: "Part 1 of From Templates to Reflection: build a C++17 type_vector and explore type sequences, pack expansion, and compile-time algorithms."
+title: "From Templates to Reflection, Part 1: Back to the Basics with type_vector"
+description: "Part 1 of From Templates to Reflection: build a (C++17) type_vector and explore type sequences, pack expansion, and compile-time algorithms."
 date: 2026-09-13 10:00:00 +0200
 tags:
   - c++
@@ -11,9 +11,9 @@ tags:
 
 This is the first post in *From Templates to Reflection*, a hands-on series exploring C++ metaprogramming from C++17 through to C++26 reflection. We begin by building `type_vector`: a familiar container interface for working with types. Later posts will explore how newer language features change the way we approach these problems.
 
-When I reach for `std::vector<int>`, I am storing *values*. Backing it, in the type system, is a description of what a bunch of ints looks like. `std::vector` treats that type as an implementation detail.
+When we reach for `std::vector<int>`, we are storing *values*. Backing it, in the type system, is a description of what a bunch of ints looks like. `std::vector` treats that type as an implementation detail.
 
-But what if I flip that around? What if the container itself—and everything inside it—lived entirely in the type system? What if I could "push back" a type, index into a list of types, filter them, transform them, deduplicate them—all without emitting a single runtime instruction?
+But what if we flip that around? What if the container itself—and everything inside it—lived entirely in the type system? What if we could "push back" a type, index into a list of types, filter them, transform them, deduplicate them—all without emitting a single runtime instruction?
 
 Our goal is to bring a familiar container interface to template metaprogramming, so we can work with sequences of types using operations we already know from working with values.
 
@@ -27,7 +27,7 @@ A compile-time sequence. A tiny database of types. The compiler is the runtime, 
 
 This post is the full walkthrough: how the container works, how `apply` solves the "unpacking" problem, how the classic `std::vector` vocabulary maps onto type-level operations, and a few real things you can build with it once it exists.
 
-**Inspiration.** Peter Dimov's [Simple C++11 metaprogramming](https://www.boost.org/doc/libs/latest/libs/mp11/doc/html/simple_cxx11_metaprogramming.html) and [Simple C++11 metaprogramming, part 2](https://www.boost.org/doc/libs/latest/libs/mp11/doc/html/simple_cxx11_metaprogramming_2.html) are important inspirations for this exploration. The first develops type-list algorithms using variadic templates and aliases: its `mp_rename`/`mp_apply` unpacking technique and pack-based `mp_transform` connect directly to our `apply` and `transform_t`. The second explores membership testing, deduplication, and indexed access, including the compile-time cost of different implementations, giving useful context for our `contains_v`, `unique_t`, and `at_t`. Dimov's approach works across different type-list templates; ours deliberately focuses on one `type_vector` with a familiar container vocabulary. The foundations are already there in C++11; we use C++17 conveniences such as fold expressions to build this teaching version.
+**Inspiration.** Peter Dimov's [Simple C++11 metaprogramming](https://www.boost.org/doc/libs/latest/libs/mp11/doc/html/simple_cxx11_metaprogramming.html) and [Simple C++11 metaprogramming, part 2](https://www.boost.org/doc/libs/latest/libs/mp11/doc/html/simple_cxx11_metaprogramming_2.html) are used as inspirations for this exploration. The first develops type-list algorithms using variadic templates and aliases: its `mp_rename`/`mp_apply` unpacking technique and pack-based `mp_transform` connect directly to our `apply` and `transform_t`. The second explores membership testing, deduplication, and indexed access, including the compile-time cost of different implementations, giving useful context for our `contains_v`, `unique_t`, and `at_t`. Dimov's approach works across different type-list templates; ours deliberately focuses on one `type_vector` with a familiar container vocabulary. The foundations are already there in C++11; we use C++17 conveniences such as fold expressions to build this teaching version.
 
 **A word on originality before we start.** Mature libraries already ship this exact vocabulary: [Boost.MPL](https://www.boost.org/doc/libs/release/libs/mpl/doc/refmanual/list.html)'s `mpl::list` and `mpl::vector`, [Boost.MP11](https://www.boost.org/doc/libs/release/libs/mp11/doc/html/mp11.html)'s [`mp_list`](https://www.boost.org/doc/libs/release/libs/mp11/doc/html/mp11.html#mp_list), Brigand, and others all do this—more completely, more carefully, and with far less compiler strain than anything we will write here. This post does not pretend otherwise. The point is not to beat them; it is to **build our own `type_vector` with an adapted interface so we can play and learn**: to peel the technique apart, hit every interesting design decision ourselves, and understand what those libraries are actually doing under the hood. What follows is a teaching exercise with working code, not a claim that hand-rolled beats vendor-hardened.
 
@@ -60,11 +60,11 @@ Both are "vectors." One stores objects; the other stores type arguments. And rem
 |-------------------------------|------------------------------------------------|
 | `v.size()`                    | `TVec::size` (a `static constexpr`)            |
 | `v.push_back(x)`              | `push_back_t<TVec, X>` (a new type)            |
-| `v[i]`                        | `at_t<I, TVec>`                                |
+| `v[i],v.at(i)`              | `at_t<I, TVec>`                                |
 | `std::find / ==`              | `contains_v<TVec, T>`                          |
 | `std::transform`              | `transform_t<TVec, F>`                         |
 | `std::copy_if`                | `filter_t<TVec, Pred>`                         |
-| deduplicate                   | `unique_t<TVec>`                               |
+| `std::unique`                 | `unique_t<TVec>`                               |
 | appending two vectors         | `concat_t<TVec1, TVec2>`                       |
 
 There is one critical difference, though. Mutating `std::vector` operations change the *same* object. `type_vector` operations are **immutable**: each one produces a brand-new type and leaves its input untouched. There are no aliasing bugs at compile time, only type identities.
@@ -73,7 +73,7 @@ There is one critical difference, though. Mutating `std::vector` operations chan
 
 ## The core container
 
-The whole thing starts with a variadic class template. It is barely ten lines:
+The whole thing starts with a variadic class template. It is barely a copule of lines:
 
 ```cpp
 template <typename... Ts>
@@ -718,18 +718,22 @@ doubles_tuple<5> samples{1.0, 2.0, 3.0, 4.0, 5.0};   // std::tuple<double, doubl
 
 It also seeds ECS/SoA layouts: `transform_t<Components, column_of>` where `column_of<T> = std::vector<T>` gives you one parallel array per component type, generated from a single declaration.
 
+### 6. Only the sky is the limit
+
+... I may go into detail for some specific use cases in one of the following posts, but I don't have any concrete plans for now...
+
 ---
 
 ## Honest limitations
 
 `type_vector` is a workhorse, but it is not magic:
 
-* **Instantiation depth is the real ceiling.** Recursive `filter`/`unique` on a list of ten types is indistinguishable from fast. On a thousands-long list, you are trading template depth for elegance, and the compiler may refuse. Prefer accumulation-style recursion (or a real library, next bullet) past a few hundred elements.
+* **Instantiation depth is the real ceiling.** Recursive `filter`/`unique` on a list of ten types is indistinguishable from fast. On a long list, you are trading template depth for elegance, and the compiler may refuse. Prefer accumulation-style recursion past a few hundred elements (not sure but I can recall that I somewhere saw practical limitations in most frontier compilers after 256 .. didn't try it yet, so I may be wrong).
 * **The transform slot is unary.** Notice how `transform_t` applies `F<T>` for each element. Templates that need more explicit arguments need a small alias shim, such as `template <typename T> using boxed = Box<T, Policy>;`. If you ever build a version-2 API, this is the argument for accepting metafunction objects as well as alias templates.
 * **`std::vector` you can resize at runtime; `type_vector` you cannot.** A `type_vector`'s contents are decided at compile time. That is the point, but it is why `type_vector` complements, rather than replaces, runtime containers.
 * **There is no pack-spreading syntax.** That one language gap is the entire reason `apply` exists. If C++ ever gets "typed pack expansion" sugar, `type_vector` could shrink to a pure type-list wrapper, but today `apply` is the cleanest story.
 
-If you want this vocabulary at scale without maintaining it yourself, the ideas here are exactly what mature libraries already ship: [Boost.MPL](https://www.boost.org/doc/libs/release/libs/mpl/doc/refmanual/list.html)'s `mpl::list` and `mpl::vector`, [Boost.MP11](https://www.boost.org/doc/libs/release/libs/mp11/doc/html/mp11.html)'s `mp_list` (which also powers large parts of Boost.Beast and others), Hans-Bernhard Bröker's brigand, and many more. Using one of those in production is the right call, and I would not hand-roll this for shipped code. The value of our `type_vector` is different: it is a readable, dependency-free implementation of the same ideas, built to adopt the interface we like and then pull it apart to understand the trade-offs—which is exactly what playing with a technique is for. And the direction of travel in the standard is complementary: C++26's added reflection (`std::meta`) makes *introspecting real types* easy, while a hand-rolled type list remains the simplest way to *carry* a set of types around as data. The two compose nicely—reflection produces the contents, `type_vector` moves them around.
+If you want this vocabulary at scale without maintaining it yourself, the ideas here are exactly what mature libraries already ship: [Boost.MPL](https://www.boost.org/doc/libs/release/libs/mpl/doc/refmanual/list.html)'s `mpl::list` and `mpl::vector`, [Boost.MP11](https://www.boost.org/doc/libs/release/libs/mp11/doc/html/mp11.html)'s `mp_list` (which also powers large parts of Boost.Beast and others), brigand, and many more. Using one of those in production is the right call, and I would not hand-roll this for shipped code. The value of our `type_vector` is different: it is a readable, dependency-free implementation of the same ideas, built to adopt the interface we like and then pull it apart to understand the trade-offs—which is exactly what playing with a technique is for. And the direction of travel in the standard is complementary: C++26's added reflection (`std::meta`) makes *introspecting real types* easy, while a hand-rolled type list remains the simplest way to *carry* a set of types around as data. The two compose nicely—reflection produces the contents, `type_vector` moves them around.
 
 ---
 

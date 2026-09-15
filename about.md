@@ -1,6 +1,6 @@
 ---
 title: About
-description: Embedded Linux and C++ consultant based in Austria, with Qt6/QML, industrial protocols, and Yocto experience.
+description: Software builder based in Austria, with modern C++, Linux, Qt, network applications, industrial automation, and process-engineering software experience.
 permalink: /about/
 ---
 
@@ -8,13 +8,13 @@ permalink: /about/
   <p class="eyebrow">About</p>
   <h1>Background</h1>
   <p class="lead">
-    Senior Embedded Linux &amp; C++ Consultant for embedded products, Qt6/QML applications, and Yocto-based systems.
+    Software builder for embedded systems, networked applications, industrial automation, and process-engineering software.
   </p>
   <p>
-    Based in Bregenz, Austria, my work focuses on embedded Linux, modern C++, Qt6/QML,
-    and industrial protocols. I focus on embedded systems where reliability,
+    Based in Bregenz, Austria, my work focuses on modern C++, Linux, Qt6/QML,
+    network applications, industrial protocols, and process-engineering software. I work on systems where reliability,
     performance, and maintainability are critical &mdash; from medical devices and laboratory equipment
-    to industrial automation and IoT products.
+    to industrial automation, simulation tooling, and IoT products.
   </p>
   <p>
     I bring over a decade of experience delivering complex software projects.
