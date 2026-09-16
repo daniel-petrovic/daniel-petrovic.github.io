@@ -771,3 +771,6 @@ That is the whole trick. Everything in this post is ten small templates; the pow
 * [C++ working draft: fold expressions](https://eel.is/c++draft/expr.prim.fold): fold semantics, including empty packs.
 * [WG21 feature-testing recommendations](https://open-std.org/jtc1/sc22/wg21/docs/papers/2016/p0096r2.html): lists fold expressions among C++17 features.
 * [This post's code on Compiler Explorer (Godbolt)](https://godbolt.org/z/d5f5MTrT9).
+
+---
+license: CC BY 4.0

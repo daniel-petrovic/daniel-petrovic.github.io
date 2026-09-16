@@ -319,3 +319,6 @@ The most practical way to think about `std::errc` is this:
 **it gives your code a standard language for ordinary failures**.
 
 That makes code easier to read, easier to test, and easier to move between platforms. In real code, its sweet spot is simple and common: file errors, validation failures, retries, timeouts, and API boundaries that return `std::error_code` instead of throwing.
+
+---
+license: CC BY 4.0

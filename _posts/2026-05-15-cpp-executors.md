@@ -240,3 +240,6 @@ The important lesson is simple:
 **stop tying the work itself to the mechanism that schedules it**.
 
 Once execution context becomes an explicit part of the model, concurrent C++ code gets easier to compose, easier to test, and easier to evolve.
+
+---
+license: CC BY 4.0

@@ -709,3 +709,6 @@ Until C++ gains native language support for customization points, `tag_invoke` r
 - [P2300R10: std::execution](https://wg21.link/p2300) — Michal Dominiak, Lewis Baker, Lee Howes, Eric Niebler, Kirk Shoop, et al. (2024)
 - [Boost.JSON Value Conversion & Custom Conversions Documentation](https://www.boost.org/doc/libs/1_86_0/libs/json/doc/html/json/conversion/custom_conversions.html) — Vinnie Falco, Kary Pardy
 - [Boost.JSON GitHub Repository](https://github.com/boostorg/json)
+
+---
+license: CC BY 4.0

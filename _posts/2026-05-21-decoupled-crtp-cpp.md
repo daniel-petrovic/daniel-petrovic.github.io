@@ -421,3 +421,6 @@ The easiest way to remember the distinction is:
 - **C++23 mixin style** says: "many classic CRTP mixins no longer need `Base<Derived>` at all"
 
 That is why the OpenJDK-style pattern is interesting. It is not just prettier CRTP. It is a way to keep **runtime flexibility** and **compile-time composition** at the same time.
+
+---
+license: CC BY 4.0

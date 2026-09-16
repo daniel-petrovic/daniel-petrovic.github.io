@@ -326,3 +326,6 @@ The source code for both libstdc++ and libc++ is freely available. Reading it is
 ---
 
 *The complete toy variant from this post is available as a single file. It is not production code — but it is a good learning tool.*
+
+---
+license: CC BY 4.0

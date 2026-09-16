@@ -198,3 +198,6 @@ The NIS2 Directive is best understood as an operational maturity driver.
 If your organization is in scope, the real question is not "How do we look compliant?" but **"Could we detect, contain, communicate, and recover from a serious cyber incident without improvising everything?"**
 
 That is a compliance question, but it is also a very practical engineering one.
+
+---
+license: CC BY 4.0

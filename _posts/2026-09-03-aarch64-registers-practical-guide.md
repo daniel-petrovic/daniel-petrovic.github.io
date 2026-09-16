@@ -421,3 +421,6 @@ The ABI specification is a moving target - the current AAPCS64 is the 2025Q4 rel
 - [Microsoft ARM64 ABI conventions](https://learn.microsoft.com/en-us/cpp/build/arm64-windows-abi-conventions) - Microsoft's platform-specific conventions, including X18 and unwind requirements
 - [Apple Platform ABI for AArch64](https://developer.apple.com/documentation/xcode/writing-arm64-code-for-apple-platforms) - Apple's platform-specific conventions
 - [Linux kernel AArch64 architecture](https://docs.kernel.org/arch/arm64/index.html) - Platform-specific details for Linux on AArch64
+
+---
+license: CC BY 4.0

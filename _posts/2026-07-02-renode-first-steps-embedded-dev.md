@@ -202,3 +202,6 @@ That is enough to get a feel for the workflow and to decide where it helps your 
 
 Renode’s documentation is detailed and structured well, so once you know the basic flow, it is easy
 to grow from a simple demo to a useful development and test setup.
+
+---
+license: CC BY 4.0

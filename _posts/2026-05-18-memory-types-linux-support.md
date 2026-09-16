@@ -154,3 +154,6 @@ Raw flash behaves fundamentally differently from a traditional disk, which is wh
 - **SSDs:** High-performance managed flash with sophisticated controllers for wear leveling and garbage collection; used in PCs and servers and accessed through the standard block storage interface.
 
 The essential distinction is that raw flash requires the operating system to manage the physical characteristics of flash memory, whereas managed flash contains an embedded controller that hides those details and presents the device as a conventional disk.
+
+---
+license: CC BY 4.0

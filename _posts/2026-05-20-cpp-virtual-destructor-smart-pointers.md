@@ -124,3 +124,6 @@ This works, but it couples the owner to the concrete type, which defeats most of
 - The compiler gives no warning for missing virtual destructors in many default configurations. The bug is silent.
 
 If a class has at least one virtual function, add `virtual ~ClassName() = default;` and move on. The cost is one pointer per object for the vtable — almost always irrelevant. The cost of forgetting is undefined behaviour and resource leaks that are very hard to diagnose.
+
+---
+license: CC BY 4.0

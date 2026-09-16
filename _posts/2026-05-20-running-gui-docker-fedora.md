@@ -147,3 +147,6 @@ That can be fine for a trusted local container you are debugging, but it should 
 ## Final thought
 
 If you are on Fedora and need a quick working baseline for Docker GUI apps, this command is a good starting point. It is especially useful when a plain `docker run -e DISPLAY=$DISPLAY ...` setup is not enough and you just want a containerized GUI to appear on screen first.
+
+---
+license: CC BY 4.0

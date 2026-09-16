@@ -406,3 +406,6 @@ final_suspend:
 | **Exception handling** | Catches everything; if `initial_suspend` never completed, rethrows; otherwise calls `promise.unhandled_exception()`. |
 
 The two standard sections `[dcl.fct.def.coroutine]` and `[expr.await]` together describe an algorithm that is almost directly executable as pseudocode. The final transformation into a switch-based state machine is an implementation strategy — but it is universal enough that thinking of coroutines as "compiler-generated state machines" is both accurate and useful.
+
+---
+license: CC BY 4.0

@@ -609,3 +609,6 @@ Every problem in this post — the duplicate `.modinfo`, the missing ELF size an
 ---
 
 *The complete module from this post is 30 lines of assembly. It was validated through five rounds of kernel rejection and careful reading of kernel log messages.*
+
+---
+license: CC BY 4.0

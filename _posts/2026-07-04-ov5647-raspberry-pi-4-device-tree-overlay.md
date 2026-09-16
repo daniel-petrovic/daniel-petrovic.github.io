@@ -443,3 +443,6 @@ $ ls -la test.raw
 The core lesson: a device tree overlay must enable every link in the hardware chain — not just the
 final device, but also the controllers, clocks, and regulators that the device depends on. Each is a
 separate fragment that references the relevant node.
+
+---
+license: CC BY 4.0

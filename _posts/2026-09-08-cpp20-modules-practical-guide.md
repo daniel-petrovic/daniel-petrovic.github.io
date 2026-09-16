@@ -562,3 +562,5 @@ Modules do not solve every problem—macros in legacy headers, binary compatibil
 - [A Short Tour of C++ Modules (video)](https://www.youtube.com/watch?v=nP8QcvPpGeM) — Daniela Engert's concise video tour of C++ module concepts and tooling.
 
 *The complete project from this guide evolves a single module from a minimal setup to interface partitions and a library target with CMake and Ninja. Every example was compiled, linked, and run on GCC 16.2.1 / CMake 4.3.0 / Ninja 1.13.2.*
+---
+license: CC BY 4.0

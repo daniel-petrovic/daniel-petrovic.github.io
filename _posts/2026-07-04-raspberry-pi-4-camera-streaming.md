@@ -387,3 +387,6 @@ Browse to `http://192.168.0.117:8080/` to view the stream.
 The core takeaway: the Pi's camera pipeline is non-trivial because of the media-controller
 architecture. libcamera abstracts this correctly, but the gstreamer plumbing around it
 (queues, HTTP wrapper, boundary strings) has its own set of subtle traps.
+
+---
+license: CC BY 4.0

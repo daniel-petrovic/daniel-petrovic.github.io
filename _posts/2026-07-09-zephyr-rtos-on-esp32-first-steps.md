@@ -288,3 +288,6 @@ For ESP32 bring-up, I would keep the first path small:
 
 That sequence keeps the early debugging focused. First prove the toolchain and flashing path, then
 prove the hardware description model, and only then start testing the more complex peripherals.
+
+---
+license: CC BY 4.0

@@ -368,3 +368,6 @@ end
 When a multithreaded bug shows up, the hardest part is usually not "how do I inspect this one frame?" but "how do I get a useful whole-program picture quickly?" In GDB, `thread apply all` is the shortest path to that picture.
 
 Once you pair it with automatically executed commands such as breakpoint command lists, `hook-stop`, and small custom commands, GDB becomes much better at capturing the state you actually care about instead of making you type the same inspection sequence over and over.
+
+---
+license: CC BY 4.0

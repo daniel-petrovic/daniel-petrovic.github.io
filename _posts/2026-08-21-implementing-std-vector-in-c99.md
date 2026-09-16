@@ -253,3 +253,6 @@ The C99 version is small because a dynamic array is fundamentally small. The int
 - any operation that can move storage invalidates derived pointers
 
 C++ templates, allocators, iterators, exception guarantees, and object lifetime rules turn those ideas into a complete standard-library container. Stripping them away in C makes the underlying model much easier to see--and makes it equally clear why the complete version is substantially more complicated.
+
+---
+license: CC BY 4.0
