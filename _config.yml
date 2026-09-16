@@ -6,7 +6,15 @@ baseurl: ""
 formspree_form_id: "xyeyrrlb"
 markdown: kramdown
 permalink: /blog/:title/
+plugins:
+  - jekyll-sitemap
+
+collections:
+  private_wiki:
+    output: true
+    permalink: /private_wiki/:name/
 kramdown:
+  math_engine: mathjax
   syntax_highlighter: rouge
   syntax_highlighter_opts:
     block:
@@ -23,6 +31,13 @@ defaults:
       type: "posts"
     values:
       layout: post
+  - scope:
+      path: "_private_wiki"
+      type: "private_wiki"
+    values:
+      layout: default
+      sitemap: false
+      math: true
 
 exclude:
   - README.md
