@@ -1,0 +1,14 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "daniel-petrovic-github-io",
+  "compatibility_date": "2026-09-15",
+  "assets": {
+    "directory": "_site"
+  },
+  "build": {
+    "command": "bundle exec jekyll build"
+  },
+  "vars": {
+    "RUBY_VERSION": "3.1.4"
+  }
+}
