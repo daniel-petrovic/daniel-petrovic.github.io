@@ -7,8 +7,5 @@
   },
   "build": {
     "command": "bundle exec jekyll build"
-  },
-  "vars": {
-    "RUBY_VERSION": "3.1.4"
   }
 }
