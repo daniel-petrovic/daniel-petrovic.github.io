@@ -10,9 +10,9 @@ plugins:
   - jekyll-sitemap
 
 collections:
-  private_wiki:
+  wiki:
     output: true
-    permalink: /private_wiki/:name/
+    permalink: /wiki/:name/
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
@@ -32,8 +32,8 @@ defaults:
     values:
       layout: post
   - scope:
-      path: "_private_wiki"
-      type: "private_wiki"
+      path: "_wiki"
+      type: "wiki"
     values:
       layout: default
       sitemap: false
