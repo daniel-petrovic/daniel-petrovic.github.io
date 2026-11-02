@@ -1,0 +1,23 @@
+From 0a61bfb7cc999d6fdb42b5dab3173b893504d03b Mon Sep 17 00:00:00 2001
+From: Daniel Petrovic <daniel-dev@hotmail.de>
+Date: Fri, 23 Oct 2026 12:11:53 +0200
+Subject: [PATCH] Update robots
+
+---
+ robots.txt | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/robots.txt b/robots.txt
+index 3a4dc70..c14422f 100644
+--- a/robots.txt
++++ b/robots.txt
+@@ -1,3 +1,4 @@
+ User-agent: *
+ Disallow: /wiki/
+-Disallow: /_wiki/
+\ No newline at end of file
++Disallow: /_wiki/
++Disallow: /w/
+-- 
+2.56.0
+
